@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <circle cx="60" cy="60" r="58" fill="#1c5c26"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#f5b93f" stroke-width="3"/>
+  <path d="M60 88C60 88 34 74 34 50a26 26 0 0 1 52 0c0 24-26 38-26 38z" fill="#a9e39c"/>
+  <path d="M60 88V50" stroke="#1c5c26" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 62c-8-4-14-2-18 4" fill="none" stroke="#1c5c26" stroke-width="3" stroke-linecap="round"/>
+  <path d="M60 70c8-4 14-2 18 4" fill="none" stroke="#1c5c26" stroke-width="3" stroke-linecap="round"/>
+  <text x="60" y="106" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="800" fill="#f5b93f">CNC</text>
+</svg>

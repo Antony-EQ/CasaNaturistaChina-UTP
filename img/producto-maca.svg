@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320">
+  <rect width="400" height="320" fill="#faf7ef"/>
+  <ellipse cx="200" cy="270" rx="120" ry="16" fill="#e7ddc0" opacity="0.7"/>
+  <rect x="125" y="80" width="150" height="190" rx="16" fill="#ffffff" stroke="#1c5c26" stroke-width="3"/>
+  <rect x="148" y="52" width="104" height="36" rx="10" fill="#4d9c46"/>
+  <rect x="136" y="130" width="128" height="120" rx="8" fill="#c9e6b8"/>
+  <text x="200" y="180" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="15" font-weight="800" fill="#1f5c25">AGUAJE +</text>
+  <text x="200" y="200" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="15" font-weight="800" fill="#1f5c25">MACA NEGRA</text>
+  <text x="200" y="228" text-anchor="middle" font-family="Poppins, sans-serif" font-size="12" fill="#2f5a2f">60 cápsulas</text>
+  <circle cx="70" cy="70" r="24" fill="#f5b93f"/>
+  <text x="70" y="75" text-anchor="middle" font-family="Poppins, sans-serif" font-size="9" font-weight="700" fill="#1f5c25">ENERGÍA</text>
+</svg>

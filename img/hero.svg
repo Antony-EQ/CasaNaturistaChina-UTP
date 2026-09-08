@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fdf7ea"/>
+      <stop offset="1" stop-color="#f6f1e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="500" rx="24" fill="url(#bg)"/>
+  <ellipse cx="300" cy="430" rx="220" ry="24" fill="#e7ddc0" opacity="0.6"/>
+
+  <!-- leaves behind -->
+  <path d="M120 220c40-70 120-90 170-60-10 60-70 110-170 60z" fill="#a9e39c"/>
+  <path d="M480 260c-40-70-120-90-170-60 10 60 70 110 170 60z" fill="#8fd67f"/>
+
+  <!-- jar 1 -->
+  <g>
+    <rect x="150" y="230" width="110" height="150" rx="14" fill="#ffffff" stroke="#1c5c26" stroke-width="3"/>
+    <rect x="165" y="205" width="80" height="30" rx="8" fill="#1c5c26"/>
+    <rect x="160" y="270" width="100" height="90" rx="6" fill="#f5b93f" opacity="0.85"/>
+    <text x="205" y="320" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="13" font-weight="700" fill="#1f5c25">CÚRCUMA</text>
+  </g>
+
+  <!-- jar 2 -->
+  <g>
+    <rect x="290" y="200" width="120" height="180" rx="14" fill="#ffffff" stroke="#1c5c26" stroke-width="3"/>
+    <rect x="308" y="172" width="84" height="32" rx="8" fill="#4d9c46"/>
+    <rect x="300" y="245" width="100" height="110" rx="6" fill="#c9e6b8"/>
+    <text x="350" y="305" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="13" font-weight="700" fill="#1f5c25">MACA</text>
+  </g>
+
+  <!-- jar 3 -->
+  <g>
+    <rect x="430" y="250" width="95" height="130" rx="14" fill="#ffffff" stroke="#1c5c26" stroke-width="3"/>
+    <rect x="444" y="228" width="68" height="26" rx="8" fill="#f08a2c"/>
+    <rect x="440" y="288" width="76" height="80" rx="6" fill="#ffe3b0"/>
+    <text x="478" y="332" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" fill="#1f5c25">COLÁGENO</text>
+  </g>
+
+  <!-- small decorative leaves -->
+  <circle cx="90" cy="120" r="10" fill="#f5b93f"/>
+  <circle cx="520" cy="130" r="7" fill="#f08a2c"/>
+  <circle cx="540" cy="380" r="9" fill="#a9e39c"/>
+</svg>
