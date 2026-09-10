@@ -1,0 +1,872 @@
+/* ============================================================
+   CASA NATURISTA CHINA — Hoja de estilos principal
+   Archivo: css/estilos.css
+   Se enlaza desde todas las páginas con:
+   <link rel="stylesheet" href="css/estilos.css">
+
+   ÍNDICE
+   1. Variables (colores y tipografía)
+   2. Reset y estilos base
+   3. Tipografía (títulos, párrafos, enlaces)
+   4. Botones
+   5. Encabezado y menú de navegación
+   6. Portada (hero)
+   7. Secciones y contenedor
+   8. Tarjetas (necesidades, pasos, productos, testimonios)
+   9. Tablas de datos
+   10. Formulario de contacto
+   11. Multimedia (video e imágenes)
+   12. Pie de página
+   13. Diseño adaptable (responsive)
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. VARIABLES
+   Los colores salen del logo y de la referencia visual.
+   Si cambia un color, se cambia aquí y se aplica en todo el sitio.
+   ------------------------------------------------------------ */
+:root {
+  --verde-oscuro: #1E5A2C;   /* texto principal, fondos fuertes */
+  --verde-medio:  #4E9A2E;   /* acentos, íconos */
+  --verde-claro:  #E4EFD6;   /* fondos suaves */
+  --naranja:      #F28C28;   /* botones y llamados a la acción */
+  --amarillo:     #F5C242;   /* detalles */
+  --crema:        #FBF6EA;   /* fondo general del sitio */
+  --blanco:       #FFFFFF;
+  --gris-texto:   #4A4A4A;   /* texto de párrafos */
+  --gris-borde:   #D9D9D9;   /* bordes de tablas y campos */
+
+  --fuente:       'Poppins', Arial, Helvetica, sans-serif;
+  --ancho-maximo: 1150px;    /* ancho del contenido en pantallas grandes */
+  --radio:        12px;      /* redondeo de tarjetas y botones */
+}
+
+
+/* ------------------------------------------------------------
+   2. RESET Y ESTILOS BASE
+   Quitamos márgenes por defecto del navegador y fijamos la base.
+   ------------------------------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* el padding no aumenta el ancho del elemento */
+}
+
+html {
+  scroll-behavior: smooth;  /* los enlaces internos (#seccion) bajan suavemente */
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gris-texto);
+  background-color: var(--crema);
+}
+
+img,
+video {
+  max-width: 100%;   /* las imágenes nunca se salen de su contenedor */
+  display: block;
+}
+
+ul {
+  list-style: none;  /* las listas del menú y del pie no llevan viñetas */
+}
+
+
+/* ------------------------------------------------------------
+   3. TIPOGRAFÍA
+   ------------------------------------------------------------ */
+h1,
+h2,
+h3 {
+  color: var(--verde-oscuro);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+h3 { font-size: 1.15rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--verde-medio);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Texto pequeño que va encima de un título (ej. "Cómo funciona") */
+.etiqueta-seccion {
+  display: inline-block;
+  color: var(--naranja);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Utilidades de texto */
+.texto-centrado { text-align: center; }
+.enlace-mas     { margin-top: 1.5rem; font-weight: 600; }
+
+/* Título de cada grupo de productos en productos.html */
+.titulo-grupo {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 1rem;
+  padding-left: 0.8rem;
+  border-left: 4px solid var(--naranja);
+}
+
+/* Párrafo introductorio debajo del título de cada sección */
+.intro-seccion {
+  max-width: 640px;
+  margin-bottom: 2rem;
+}
+
+
+/* ------------------------------------------------------------
+   4. BOTONES
+   Un botón es un enlace <a> con la clase .boton
+   ------------------------------------------------------------ */
+.boton {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radio);
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.boton:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.boton-verde {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+.boton-naranja {
+  background-color: var(--naranja);
+  color: var(--blanco);
+}
+
+.boton-borde {
+  background-color: transparent;
+  color: var(--verde-oscuro);
+  border-color: var(--verde-oscuro);
+}
+
+
+/* ------------------------------------------------------------
+   5. ENCABEZADO Y MENÚ DE NAVEGACIÓN
+   ------------------------------------------------------------ */
+
+/* Barra superior fina con mensajes de confianza */
+.barra-superior {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.4rem 1rem;
+}
+
+/* Encabezado principal: logo + menú + botón WhatsApp */
+.encabezado {
+  background-color: var(--blanco);
+  border-bottom: 1px solid var(--gris-borde);
+  position: sticky;   /* el menú se queda fijo al hacer scroll */
+  top: 0;
+  z-index: 10;
+}
+
+.encabezado .contenedor {
+  display: flex;                 /* logo, menú y botón en una fila */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo img {
+  width: 64px;
+  height: 64px;
+}
+
+.logo span {
+  font-size: 0.9rem;
+}
+
+/* Lista de enlaces del menú */
+.menu {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.menu a {
+  color: var(--verde-oscuro);
+  font-weight: 600;
+  padding: 0.4rem 0;
+  border-bottom: 3px solid transparent; /* espacio reservado para el subrayado */
+}
+
+.menu a:hover,
+.menu a.activo {
+  text-decoration: none;
+  border-bottom-color: var(--naranja);   /* subraya la página actual */
+}
+
+/* Botón de WhatsApp del encabezado */
+.boton-whatsapp {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.boton-whatsapp:hover {
+  text-decoration: none;
+  background-color: var(--verde-oscuro);
+}
+
+
+/* ------------------------------------------------------------
+   6. PORTADA (HERO)
+   Texto a la izquierda y foto a la derecha.
+   ------------------------------------------------------------ */
+.portada {
+  padding: 4rem 0;
+}
+
+.portada .contenedor {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.portada-texto {
+  flex: 1;
+}
+
+.portada-texto h1 {
+  margin: 0.5rem 0 1rem;
+}
+
+.portada-imagen {
+  flex: 1;
+}
+
+.portada-imagen img {
+  border-radius: var(--radio);
+}
+
+/* Grupo de botones debajo del texto */
+.portada-botones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* Frase escrita a mano encima del título ("Tu bienestar comienza aquí") */
+.frase-manuscrita {
+  color: var(--verde-medio);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+
+/* ------------------------------------------------------------
+   7. SECCIONES Y CONTENEDOR
+   .contenedor centra el contenido y limita su ancho.
+   .seccion da el espacio vertical entre bloques.
+   ------------------------------------------------------------ */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.seccion {
+  padding: 3.5rem 0;
+}
+
+/* Variantes de fondo para alternar secciones */
+.fondo-blanco { background-color: var(--blanco); }
+.fondo-verde  { background-color: var(--verde-oscuro); color: var(--blanco); }
+.fondo-verde h2,
+.fondo-verde h3 { color: var(--blanco); }
+
+/* Franja de beneficios debajo de la portada (5 columnas) */
+.franja-beneficios {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.beneficio {
+  flex: 1 1 200px;
+  padding: 1.2rem 1.4rem;
+  color: var(--blanco);
+}
+
+.beneficio h3 {
+  color: var(--blanco);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.beneficio p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* cada bloque con un tono distinto, como en la referencia visual */
+.beneficio:nth-child(1) { background-color: var(--verde-oscuro); }
+.beneficio:nth-child(2) { background-color: var(--verde-medio); }
+.beneficio:nth-child(3) { background-color: var(--naranja); }
+.beneficio:nth-child(4) { background-color: var(--amarillo); color: var(--verde-oscuro); }
+.beneficio:nth-child(4) h3 { color: var(--verde-oscuro); }
+.beneficio:nth-child(5) { background-color: #7CB342; }
+
+/* Cifras de la sección "Historias reales" */
+.cifras {
+  display: flex;
+  gap: 2.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.cifra strong {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--verde-oscuro);
+}
+
+
+/* ------------------------------------------------------------
+   8. TARJETAS
+   Todas las cuadrículas usan flex con "wrap": las tarjetas
+   pasan a la siguiente fila cuando no caben.
+   ------------------------------------------------------------ */
+.cuadricula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* Necesidad de salud: círculo con ícono + texto (enlace a productos) */
+.necesidad {
+  flex: 1 1 130px;
+  max-width: 140px;
+  text-align: center;
+  background-color: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radio);
+  padding: 1.2rem 0.8rem;
+  color: var(--verde-oscuro);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.necesidad:hover {
+  text-decoration: none;
+  border-color: var(--verde-medio);
+  background-color: var(--verde-claro);
+}
+
+.necesidad .icono {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Pasos de "Cómo funciona" */
+.paso {
+  flex: 1 1 220px;
+  background-color: var(--blanco);
+  border-top: 4px solid var(--verde-medio);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+}
+
+.paso .numero {
+  color: var(--naranja);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.paso h3 {
+  margin: 0.3rem 0 0.5rem;
+}
+
+/* Tarjeta de producto */
+.producto {
+  flex: 1 1 250px;
+  max-width: 320px;
+  background-color: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radio);
+  overflow: hidden;   /* la imagen respeta el borde redondeado */
+  display: flex;
+  flex-direction: column;
+}
+
+.producto img {
+  width: 100%;
+  height: 260px;         /* todas las fotos con la misma altura */
+  object-fit: cover;
+}
+
+.producto-cuerpo {
+  padding: 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto .categoria {
+  font-size: 0.8rem;
+  color: var(--verde-medio);
+  font-weight: 600;
+}
+
+.producto .como-tomar {
+  background-color: var(--verde-claro);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  margin: 0.8rem 0;
+}
+
+/* Precio y botón alineados en la parte inferior de la tarjeta */
+.producto-pie {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.precio {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+
+/* Etiqueta pequeña sobre la imagen ("Más vendido", "En oferta") */
+.etiqueta {
+  display: inline-block;
+  align-self: flex-start;   /* no se estira al ancho de la tarjeta */
+  background-color: var(--naranja);
+  color: var(--blanco);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-bottom: 0.4rem;
+}
+
+/* Testimonio de cliente */
+.testimonio {
+  flex: 1 1 280px;
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  border-left: 4px solid var(--amarillo);
+}
+
+.testimonio .estrellas {
+  color: var(--amarillo);
+  letter-spacing: 2px;
+}
+
+.testimonio cite {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-top: 0.5rem;
+}
+
+/* Tarjeta de local (dirección + foto) */
+.local {
+  flex: 1 1 300px;
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  overflow: hidden;
+  border: 1px solid var(--gris-borde);
+}
+
+.local-cuerpo {
+  padding: 1.2rem;
+}
+
+/* Preguntas frecuentes (respuestas cortas) */
+.pregunta {
+  flex: 1 1 280px;
+  background-color: var(--verde-claro);
+  border-radius: var(--radio);
+  padding: 1.3rem;
+}
+
+
+/* ------------------------------------------------------------
+   9. TABLAS DE DATOS
+   Se usan en productos.html (comparativa) y contacto.html (horarios).
+   ------------------------------------------------------------ */
+.tabla-contenedor {
+  overflow-x: auto;   /* en celulares la tabla se desplaza de lado */
+  margin-bottom: 1.5rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;   /* une los bordes de las celdas */
+  background-color: var(--blanco);
+  font-size: 0.95rem;
+}
+
+.tabla caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  padding: 0.6rem 0;
+}
+
+/* Encabezado de la tabla (thead) */
+.tabla thead th {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  text-align: left;
+  padding: 0.8rem 0.9rem;
+  font-weight: 600;
+}
+
+/* Celdas del cuerpo (tbody) */
+.tabla tbody td,
+.tabla tbody th {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--gris-borde);
+  vertical-align: top;
+}
+
+.tabla tbody th {
+  text-align: left;
+  color: var(--verde-oscuro);
+}
+
+/* Filas alternadas para leer mejor */
+.tabla tbody tr:nth-child(even) {
+  background-color: var(--crema);
+}
+
+.tabla tbody tr:hover {
+  background-color: var(--verde-claro);
+}
+
+/* Disponibilidad: texto verde si hay stock, naranja si no */
+.disponible    { color: var(--verde-medio); font-weight: 600; }
+.no-disponible { color: var(--naranja);     font-weight: 600; }
+
+
+/* ------------------------------------------------------------
+   10. FORMULARIO DE CONTACTO
+   ------------------------------------------------------------ */
+.contacto .contenedor {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.formulario {
+  flex: 1.2;
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 2rem;
+  border: 1px solid var(--gris-borde);
+}
+
+.datos-contacto {
+  flex: 1;
+}
+
+/* Cada pareja label + campo */
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+}
+
+/* Dos campos en la misma fila */
+.fila-campos {
+  display: flex;
+  gap: 1rem;
+}
+
+.fila-campos .campo {
+  flex: 1;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--gris-borde);
+  border-radius: 8px;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  background-color: var(--blanco);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--verde-medio);   /* resalta el campo activo */
+  border-color: var(--verde-medio);
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Casilla de autorización: la casilla y el texto en una línea */
+.campo-casilla {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.campo-casilla input {
+  margin-top: 0.3rem;
+}
+
+/* Botón de envío del formulario */
+.formulario button {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: var(--radio);
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background-color: var(--verde-medio);
+}
+
+/* Lista de datos de contacto (teléfono, correo, dirección) */
+.lista-contacto li {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--gris-borde);
+}
+
+.lista-contacto strong {
+  display: block;
+  color: var(--verde-oscuro);
+}
+
+
+/* ------------------------------------------------------------
+   11. MULTIMEDIA
+   ------------------------------------------------------------ */
+.video {
+  width: 100%;
+  border-radius: var(--radio);
+  border: 1px solid var(--gris-borde);
+  background-color: #000;
+}
+
+/* Mapa de Google incrustado en contacto.html */
+.mapa {
+  width: 100%;
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radio);
+}
+
+/* Celda de precio: no se parte en dos líneas */
+.precio-tabla {
+  white-space: nowrap;
+}
+
+.imagen-redonda {
+  border-radius: var(--radio);
+}
+
+/* Bloque texto + video de la página "Nosotros" */
+.dos-columnas {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.dos-columnas > * {
+  flex: 1;
+}
+
+
+/* ------------------------------------------------------------
+   12. PIE DE PÁGINA
+   ------------------------------------------------------------ */
+.pie {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  padding: 3rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.pie a {
+  color: var(--blanco);
+}
+
+.pie-columnas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.pie-columna {
+  flex: 1 1 220px;
+}
+
+.pie h3 {
+  color: var(--amarillo);
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.pie li {
+  margin-bottom: 0.4rem;
+}
+
+.pie .logo img {
+  width: 56px;
+  height: 56px;
+}
+
+.pie .logo {
+  color: var(--blanco);
+  margin-bottom: 1rem;
+}
+
+/* Redes sociales: enlaces en fila */
+.redes {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.redes a {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.redes a:hover {
+  background-color: var(--verde-medio);
+  text-decoration: none;
+}
+
+/* Línea final con derechos de autor y enlaces legales */
+.pie-final {
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.pie-final ul {
+  display: flex;
+  gap: 1.2rem;
+}
+
+
+/* ------------------------------------------------------------
+   13. DISEÑO ADAPTABLE (RESPONSIVE)
+   Reglas que solo se aplican en pantallas de 820 px o menos.
+   Todo lo que está en fila pasa a columna.
+   ------------------------------------------------------------ */
+@media (max-width: 820px) {
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+
+  .encabezado .contenedor {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem 1.2rem;
+  }
+
+  .portada .contenedor,
+  .contacto .contenedor,
+  .dos-columnas {
+    flex-direction: column;
+  }
+
+  .portada {
+    padding: 2.5rem 0;
+  }
+
+  .cifras {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .fila-campos {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pie-final {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacta a Casa Naturista China: asesoría gratuita, WhatsApp, correo, direcciones y horarios de nuestros locales en Tacna.">
+  <title>Contacto | Casa Naturista China</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+  <!-- ===== ENCABEZADO (igual en todas las páginas) ===== -->
+  <header>
+    <div class="barra-superior">
+      Envíos a todo el Perú &nbsp;|&nbsp; Productos 100 % originales &nbsp;|&nbsp; 2 locales en Tacna
+    </div>
+    <div class="encabezado">
+      <div class="contenedor">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Logo de Casa Naturista China">
+          <span>Casa Naturista<br>China</span>
+        </a>
+        <nav>
+          <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html" class="activo">Contacto</a></li>
+          </ul>
+        </nav>
+        <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
+          WhatsApp 919 589 549
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ---------- Formulario de contacto + datos directos ---------- -->
+    <section class="seccion contacto">
+      <div class="contenedor">
+
+        <!-- Columna izquierda: formulario.
+             Cada campo tiene su <label> unido por "for" e "id".
+             Los tipos (text, email, tel, select, textarea) hacen que el navegador
+             valide solo. "required" obliga a llenar el campo.
+             action="#" porque todavía no hay servidor: se conectará en una unidad posterior. -->
+        <form class="formulario" action="#" method="post">
+
+          <span class="etiqueta-seccion">Asesoría gratuita</span>
+          <h2>Cuéntanos tu caso</h2>
+          <p>Respondemos por WhatsApp en menos de 24 horas con una recomendación concreta.</p>
+
+          <div class="fila-campos">
+            <div class="campo">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Quispe" required>
+            </div>
+            <div class="campo">
+              <label for="telefono">WhatsApp</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="9xx xxx xxx" required>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tu@correo.com">
+          </div>
+
+          <div class="fila-campos">
+            <div class="campo">
+              <label for="local">Local más cercano</label>
+              <select id="local" name="local">
+                <option value="">Elige un local</option>
+                <option value="local-1">Local 1 — Cercado de Tacna</option>
+                <option value="local-2">Local 2 — Gregorio Albarracín</option>
+                <option value="envio">Prefiero envío a domicilio</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="necesidad">¿Qué quieres mejorar?</label>
+              <select id="necesidad" name="necesidad" required>
+                <option value="">Elige una opción</option>
+                <option value="digestion">Digestión y desintoxicación</option>
+                <option value="energia">Energía y vitalidad</option>
+                <option value="huesos">Huesos y articulaciones</option>
+                <option value="defensas">Defensas</option>
+                <option value="corazon">Corazón y presión</option>
+                <option value="piel">Belleza y piel</option>
+                <option value="descanso">Descanso y estrés</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Cuéntanos tu caso</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Desde cuándo lo sientes, qué tomas hoy, si tienes algún tratamiento médico..." required></textarea>
+          </div>
+
+          <div class="campo campo-casilla">
+            <input type="checkbox" id="autorizo" name="autorizo" required>
+            <label for="autorizo">Acepto que me contacten por WhatsApp para recibir la recomendación y que mis datos se usen solo para atender esta consulta.</label>
+          </div>
+
+          <button type="submit">Enviar mi consulta</button>
+
+        </form>
+
+
+        <!-- Columna derecha: datos de contacto directo -->
+        <aside class="datos-contacto">
+          <h2>O contáctanos directo</h2>
+          <ul class="lista-contacto">
+            <li>
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/51919589549" target="_blank" rel="noopener">919 589 549</a><br>
+              Lunes a sábado 9:00 – 20:00
+            </li>
+            <li>
+              <strong>Correo</strong>
+              <!-- REEMPLAZAR: correo real -->
+              <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a><br>
+              Pedidos mayoristas y facturación
+            </li>
+            <li>
+              <strong>Local 1 — Cercado</strong>
+             Av. Patricio Melendez 1290, Cercado de Tacna
+            </li>
+            <li>
+              <strong>Local 2 — Gregorio Albarracín</strong>
+              Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna
+            </li>
+          </ul>
+
+          <p>
+            <strong>¿Tienes una botica o tienda?</strong><br>
+            Pide nuestra lista de precios mayorista con factura y despacho a todo el Perú.
+            <a href="https://wa.me/51919589549?text=Hola,%20quiero%20la%20lista%20mayorista" target="_blank" rel="noopener">Solicitar lista mayorista</a>
+          </p>
+        </aside>
+
+      </div>
+    </section>
+
+
+    <!-- ---------- TABLA 2: horarios de atención ---------- -->
+    <section class="seccion fondo-blanco" id="horarios">
+      <div class="contenedor">
+        <h2>Horarios de atención</h2>
+        <p class="intro-seccion">Los horarios pueden variar en feriados; confirma por WhatsApp antes de venir.</p>
+
+        <div class="tabla-contenedor">
+          <!-- REEMPLAZAR: horarios reales de cada local -->
+          <table class="tabla">
+            <caption>Horario de los locales — Casa Naturista China</caption>
+
+            <thead>
+              <tr>
+                <th>Local</th>
+                <th>Dirección</th>
+                <th>Lunes a viernes</th>
+                <th>Sábado</th>
+                <th>Domingo</th>
+                <th>Teléfono</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th>Local 1 — Cercado</th>
+                <td>Av. Patricio Melendez 1290, Cercado de Tacna</td>
+                <td>9:00 – 20:00</td>
+                <td>9:00 – 20:00</td>
+                <td>9:00 – 14:00</td>
+                <td>919 589 549</td>
+              </tr>
+              <tr>
+                <th>Local 2 — Gregorio Albarracín</th>
+                <td>Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</td>
+                <td>9:00 – 19:00</td>
+                <td>9:00 – 19:00</td>
+                <td>9:00 – 14:00</td>
+                <td>919 589 549</td>
+              </tr>
+              <tr>
+                <th>Envíos a domicilio</th>
+                <td>Tacna y todo el Perú</td>
+                <td>Pedidos hasta las 17:00</td>
+                <td>Pedidos hasta las 13:00</td>
+                <td class="no-disponible">Sin despacho</td>
+                <td>919 589 549</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ---------- Mapa ----------
+         Mapa de Google Maps incrustado con <iframe>. REEMPLAZAR por el mapa real:
+         en Google Maps > Compartir > Insertar un mapa > copiar el código. -->
+<section class="seccion" id="mapa">
+  <div class="contenedor">
+    <h2>Cómo llegar a Farmacia China</h2>
+
+    <iframe class="mapa"
+      src="https://www.google.com/maps?q=-18.0012292,-70.255739&output=embed"height="380"
+      title="Mapa de ubicación de Farmacia China en Tacna"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <a class="boton"
+  href="https://www.google.com/maps/place/Farmacia+China/@-18.0012085,-70.2660173,15z/data=!3m1!4b1!4m6!3m5!1s0x915acf601aa0c3b3:0xc2d03d82bc2cabeb!8m2!3d-18.0012292!4d-70.255739!16s%2Fg%2F11x0gd92vx"
+  target="_blank"
+  rel="noopener">
+  Abrir ubicación en Google Maps
+</a>
+</section>
+
+  </main>
+
+
+  <!-- ===== PIE DE PÁGINA (igual en todas las páginas) ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-columnas">
+        <div class="pie-columna">
+          <a href="index.html" class="logo">
+            <img src="img/logo.png" alt="Logo de Casa Naturista China">
+            <span>Casa Naturista<br>China</span>
+          </a>
+          <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
+        </div>
+        <div class="pie-columna">
+          <h3>Contacto</h3>
+          <ul>
+            <li>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</li>
+            <li>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</li>
+            <li>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></li>
+            <li>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Secciones</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Síguenos</h3>
+          <div class="redes">
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+      </div>
+      <div class="pie-final">
+        <p>&copy; 2026 Casa Naturista China. Todos los derechos reservados.</p>
+        <ul>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Libro de reclamaciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
