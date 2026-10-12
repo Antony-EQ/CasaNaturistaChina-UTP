@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -25,16 +26,26 @@
           <img src="img/logo.png" alt="Logo de Casa Naturista China">
           <span>Casa Naturista<br>China</span>
         </a>
+
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
         <nav>
           <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html" class="activo">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html" class="activo"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
+        <!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
-          WhatsApp 919 589 549
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
       </div>
     </div>
@@ -70,11 +81,21 @@
                Alternativa con YouTube (quitar los comentarios para usarla):
                <iframe width="560" height="315" src="https://www.youtube.com/embed/ID_DEL_VIDEO"
                        title="Video de Casa Naturista China" allowfullscreen></iframe> -->
-       <video class="video" controls autoplay muted playsinline
-             poster="img/hero-productos.jpg">
-           <source src="media/presentacion.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video.
-        </video>
+<!-- TURNO 7 — VIDEO MEJORADO
+               - Tamaño: el video original es vertical (478x850), por eso se centra y
+                 se limita a 340 px de ancho (ver .video-contenedor en el CSS).
+               - Presentación: imagen de portada (poster) y pie de foto.
+               - Responsive: aspect-ratio 9/16 reserva el espacio y max-width:100% lo adapta.
+               - Peso: se comprimió de 3.7 MB a 1.2 MB y preload="metadata" evita descargarlo
+                 completo hasta que el usuario pulse reproducir. -->
+          <figure class="video-contenedor">
+            <video class="video" controls playsinline preload="metadata"
+                   poster="img/poster-presentacion.jpg">
+              <source src="media/presentacion.mp4" type="video/mp4">
+              Tu navegador no puede reproducir este video.
+            </video>
+            <figcaption><i class="fa-solid fa-circle-play"></i> Conoce Casa Naturista China en 15 segundos</figcaption>
+          </figure>
         </div>
 
       </div>
@@ -112,7 +133,7 @@
 
           <article class="local">
             <!-- REEMPLAZAR: foto real del local -->
-            <img src="img/local-1.jpeg" alt="Fachada del Local 1 de Casa Naturista China en el Cercado de Tacna">
+            <img loading="lazy" decoding="async" width="800" height="827" src="img/local-1.jpeg" alt="Fachada del Local 1 de Casa Naturista China en el Cercado de Tacna">
             <div class="local-cuerpo">
               
 
@@ -123,7 +144,7 @@
           </article>
 
           <article class="local">
-            <img src="img/local-2.png" alt="Fachada del Local 2 de Casa Naturista China en Gregorio Albarracín, Tacna">
+            <img loading="lazy" decoding="async" width="800" height="822" src="img/local-2.jpg" alt="Fachada del Local 2 de Casa Naturista China en Gregorio Albarracín, Tacna">
             <div class="local-cuerpo">
               <h3>Local 2 — Gregorio Albarracín</h3>
               <p>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna<br>Lunes a sábado 9:00 – 19:00 · Domingo cerrado</p>
@@ -171,30 +192,36 @@
           </a>
           <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
         </div>
-        <div class="pie-columna">
+        <div class="pie-columna pie-contacto">
           <h3>Contacto</h3>
           <ul>
-            <li>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</li>
-            <li>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</li>
-            <li>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></li>
-            <li>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></li>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
           </ul>
         </div>
         <div class="pie-columna">
-          <h3>Secciones</h3>
+          <h3>Enlaces rápidos</h3>
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="productos.html">Productos</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
           </ul>
         </div>
         <div class="pie-columna">
           <h3>Síguenos</h3>
           <div class="redes">
-            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener">TikTok</a>
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
           </div>
         </div>
       </div>
@@ -208,7 +235,8 @@
       </div>
     </div>
   </footer>
-
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
 </body>
 
 </html>

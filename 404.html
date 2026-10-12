@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada | Casa Naturista China</title>
+
+  <!-- TURNO 11: GitHub Pages muestra este archivo para cualquier dirección que no exista,
+       incluso dentro de subcarpetas (ej. /CasaNaturistaChina-UTP/algo/otro), donde las rutas
+       relativas como "css/estilos.css" dejarían de funcionar. Por eso se indica la carpeta
+       del repositorio como base de todas las rutas. En local no hace falta. -->
+  <script>
+    if (location.hostname.endsWith('github.io')) {
+      document.write('<base href="/' + location.pathname.split('/')[1] + '/">');
+    }
+  </script>
+
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <!-- TURNO 11: estilos propios del blog y de la página 404 -->
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ===== ENCABEZADO (igual en todas las páginas) ===== -->
+  <header>
+    <div class="barra-superior">
+      Envíos a todo el Perú &nbsp;|&nbsp; Productos 100 % originales &nbsp;|&nbsp; 2 locales en Tacna
+    </div>
+    <div class="encabezado">
+      <div class="contenedor">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Logo de Casa Naturista China">
+          <span>Casa Naturista<br>China</span>
+        </a>
+
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
+        <nav>
+          <ul class="menu">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
+          </ul>
+        </nav>
+        <!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==================================================================
+       TURNO 11 — PÁGINA 404
+       - Imagen: ilustración img/404.svg (flota de arriba a abajo).
+       - Animación: las cifras 4-0-4 entran con rebote.
+       - Botón regresar: al inicio y a la página anterior.
+       ================================================================== -->
+  <main>
+    <section class="error-404">
+      <div class="contenedor">
+
+        <img class="error-imagen" src="img/404.svg" alt="Frasco vacío con cara triste rodeado de hojas" width="400" height="320">
+
+        <!-- aria-hidden: el lector de pantalla ya lee el título de abajo -->
+        <p class="error-codigo" aria-hidden="true"><span>4</span><span>0</span><span>4</span></p>
+
+        <h1>Página no encontrada</h1>
+        <p class="error-texto">
+          Este frasco está vacío: la página que buscas no existe o cambió de lugar.
+          Regresa al inicio y sigue explorando nuestros productos naturales.
+        </p>
+
+        <div class="error-botones">
+          <a href="index.html" class="boton boton-verde"><i class="fa-solid fa-house"></i> Regresar al inicio</a>
+          <button type="button" class="boton boton-borde" id="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver atrás</button>
+        </div>
+
+        <p class="error-enlaces">
+          <a href="productos.html">Ver productos</a>
+          <a href="blog.html">Leer el blog</a>
+          <a href="contacto.html">Contactarnos</a>
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ===== PIE DE PÁGINA (igual en todas las páginas) ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-columnas">
+        <div class="pie-columna">
+          <a href="index.html" class="logo">
+            <img src="img/logo.png" alt="Logo de Casa Naturista China">
+            <span>Casa Naturista<br>China</span>
+          </a>
+          <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
+        </div>
+        <div class="pie-columna pie-contacto">
+          <h3>Contacto</h3>
+          <ul>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Síguenos</h3>
+          <div class="redes">
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+          </div>
+        </div>
+      </div>
+      <div class="pie-final">
+        <p>&copy; 2026 Casa Naturista China. Todos los derechos reservados.</p>
+        <ul>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Libro de reclamaciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
+  <!-- TURNO 11: "Volver atrás" regresa a la página anterior; si no hay historial, va al inicio -->
+  <script>
+    document.getElementById('btn-volver').addEventListener('click', function () {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+
+</html>

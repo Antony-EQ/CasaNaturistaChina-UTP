@@ -12,19 +12,206 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
 
   <!-- Tipografía Poppins desde Google Fonts (si no hay internet se usa Arial) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&display=swap" rel="stylesheet">
-<!-- Hoja de estilos externa del sitio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos externa del sitio -->
   <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- TURNO 11: tarjetas de la sección "Últimos consejos" -->
+  <link rel="stylesheet" href="css/blog.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- ==================================================================
+       TURNO 4 - ANIMACIONES CSS
+       Animaciones de entrada, logo, tarjetas y bienvenida.
+       Se agregan sin modificar el diseño original del sitio.
+       ================================================================== -->
+  <style>
+    /* 1. Animación general de entrada: aparece suavemente y sube */
+    @keyframes turno4Entrada {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 2. Animación profesional del logo: aparece y realiza un movimiento suave */
+    @keyframes turno4Logo {
+      0% {
+        opacity: 0;
+        transform: scale(0.82) translateY(-12px);
+      }
+      70% {
+        transform: scale(1.04) translateY(2px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* 3. Movimiento suave del logo mientras permanece visible */
+    @keyframes turno4LogoFlotante {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    /* 4. Bienvenida: el contenido aparece en el centro */
+    @keyframes turno4Bienvenida {
+      0% {
+        opacity: 1;
+        visibility: visible;
+      }
+      75% {
+        opacity: 1;
+        visibility: visible;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes turno4BienvenidaContenido {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(12px);
+      }
+      35% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Pantalla inicial de bienvenida */
+    .bienvenida-turno4 {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--crema);   /* sigue el modo claro / oscuro */
+      animation: turno4Bienvenida 3.2s ease forwards;
+      pointer-events: none;
+    }
+
+    .bienvenida-contenido {
+      text-align: center;
+      animation: turno4BienvenidaContenido 3.2s ease forwards;
+    }
+
+    .bienvenida-logo {
+      width: min(180px, 45vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+    .bienvenida-contenido h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+    }
+
+    .bienvenida-contenido p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.75;
+    }
+
+    /* Entrada del contenido principal */
+    .animacion-entrada {
+      opacity: 0;
+      animation: turno4Entrada 0.9s ease-out 3.15s forwards;
+    }
+
+    /* Animación del logo del encabezado */
+    header .animacion-logo {
+      animation:
+        turno4Logo 1s ease-out 3.2s both,
+        turno4LogoFlotante 4s ease-in-out 4.4s infinite;
+    }
+
+    /* 3. Animación de tarjetas: fade + desplazamiento.
+       js/animaciones.js oculta cada tarjeta (.tarjeta-oculta) y la muestra
+       (.tarjeta-visible) cuando entra en pantalla al hacer scroll.
+       "backwards" solo aplica el estado inicial durante el retraso: al terminar,
+       la tarjeta queda libre para el efecto hover. */
+    .tarjeta-oculta {
+      opacity: 0;
+    }
+
+    .tarjeta-visible {
+      animation: turno4Entrada 0.75s ease-out backwards;
+    }
+
+    /* Movimiento al pasar el mouse por las tarjetas, sin alterar su diseño */
+    .producto,
+    .tarjeta-galeria,
+    .paso {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .producto:hover,
+    .tarjeta-galeria:hover,
+    .paso:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Accesibilidad: usuarios que prefieren menos movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      .bienvenida-turno4,
+      .bienvenida-contenido,
+      .animacion-entrada,
+      header .animacion-logo,
+      .animacion-tarjeta,
+      .tarjeta-oculta,
+      .tarjeta-visible {
+        animation: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+
+      .bienvenida-turno4 {
+        display: none;
+      }
+    }
+  </style>
+
 </head>
 
-<body>
+<body class="pagina-inicio">
 
   <!-- ==================================================================
        ENCABEZADO (igual en todas las páginas)
        Barra superior + logo + menú de navegación + botón de WhatsApp
        ================================================================== -->
+  <!-- TURNO 4: Pantalla de bienvenida inicial -->
+  <div class="bienvenida-turno4" aria-label="Bienvenida a Casa Naturista China">
+    <div class="bienvenida-contenido">
+      <img src="img/logo.png" alt="Logo de Casa Naturista China" class="bienvenida-logo">
+      <h2>Casa Naturista China</h2>
+      <p>Tu bienestar comienza aquí</p>
+    </div>
+  </div>
+
   <header>
 
     <div class="barra-superior">
@@ -40,19 +227,29 @@
           <span>Casa Naturista<br>China</span>
         </a>
 
-        <!-- Menú principal. La clase "activo" marca la página actual -->
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
+        
+
+<!-- Menú de navegación principal con íconos representativos -->
         <nav>
           <ul class="menu">
-            <li><a href="index.html" class="activo">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html" class="activo"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
-
-        <!-- wa.me abre WhatsApp con el número indicado -->
+<!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+<!-- Botón de WhatsApp con el ícono oficial de marca -->
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
-          WhatsApp 919 589 549
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
 
       </div>
@@ -63,14 +260,14 @@
 
   <!-- ==================================================================
        CONTENIDO PRINCIPAL
-
+       ================================================================== -->
   <main>
 
     <!-- ---------- Portada (hero): mensaje principal + foto ---------- -->
     <section class="portada">
       <div class="contenedor">
 
-        <div class="portada-texto">
+        <div class="portada-texto animacion-entrada">
           <p class="frase-manuscrita">Tu bienestar comienza aquí</p>
           <h1>EL CAMINO NATURAL A TU BIENESTAR</h1>
           <p>
@@ -83,9 +280,9 @@
           </div>
         </div>
 
-        <div class="portada-imagen">
+        <div class="portada-imagen animacion-entrada">
           <!-- REEMPLAZAR: foto real de productos en la tienda -->
-          <img src="img/hero-productos.jpeg" alt="Productos naturales de Casa Naturista China sobre el mostrador de la tienda">
+          <img fetchpriority="high" src="img/hero-productos.jpeg" alt="Productos naturales de Casa Naturista China sobre el mostrador de la tienda">
         </div>
 
       </div>
@@ -95,94 +292,124 @@
     <!-- ---------- Franja de beneficios (5 bloques de color) ---------- -->
     <section class="franja-beneficios">
       <div class="beneficio">
-        <h3>Productos originales</h3>
-        <p>Trabajamos con las mejores marcas.</p>
+        <div class="beneficio-icono">
+          <img src="img/iconos/original.svg" alt="Productos originales">
+        </div>
+        <div class="beneficio-texto">
+          <h3>Productos originales</h3>
+          <p>Trabajamos con las mejores marcas.</p>
+        </div>
       </div>
+
       <div class="beneficio">
-        <h3>Envíos a todo el Perú</h3>
-        <p>Llega seguro y rápido hasta tu puerta.</p>
+        <div class="beneficio-icono">
+          <img src="img/iconos/envios.svg" alt="Envíos a todo el Perú">
+        </div>
+        <div class="beneficio-texto">
+          <h3>Envíos a todo el Perú</h3>
+          <p>Llega seguro y rápido hasta tu puerta.</p>
+        </div>
       </div>
+
       <div class="beneficio">
-        <h3>Atención personalizada</h3>
-        <p>Te asesoramos para elegir lo mejor para ti.</p>
+        <div class="beneficio-icono">
+          <img src="img/iconos/asesoria.svg" alt="Atención personalizada">
+        </div>
+        <div class="beneficio-texto">
+          <h3>Atención personalizada</h3>
+          <p>Te asesoramos para elegir lo mejor para ti.</p>
+        </div>
       </div>
+
       <div class="beneficio">
-        <h3>Compra segura</h3>
-        <p>Tus datos y pagos están protegidos.</p>
+        <div class="beneficio-icono">
+          <img src="img/iconos/seguridad.svg" alt="Compra segura">
+        </div>
+        <div class="beneficio-texto">
+          <h3>Compra segura</h3>
+          <p>Tus datos y pagos están protegidos.</p>
+        </div>
       </div>
+
       <div class="beneficio">
-        <h3>Clientes satisfechos</h3>
-        <p>Confían en nosotros y recomiendan.</p>
+        <div class="beneficio-icono">
+          <img src="img/iconos/clientes.svg" alt="Clientes satisfechos">
+        </div>
+        <div class="beneficio-texto">
+          <h3>Clientes satisfechos</h3>
+          <p>Confían en nosotros y recomiendan.</p>
+        </div>
       </div>
     </section>
 
 
-    <!-- ---------- ¿Qué quieres mejorar? (orientación para el cliente) ----------
-         Cada tarjeta lleva a la sección correspondiente de productos.html -->
-    <section class="seccion" id="necesidades">
-  <div class="contenedor">
-    <span class="etiqueta-seccion">Empecemos por ti</span>
-    <h2>¿Qué quieres mejorar hoy?</h2>
-    <p class="intro-seccion">
-      Elige una necesidad y te mostramos qué tomar, cuánto y por cuánto tiempo.
-      Sin costo y sin compromiso de compra.
-    </p>
+    <!-- ---------- Sección: Productos destacados ---------- -->
+    <section class="seccion" id="destacados">
+      <div class="contenedor">
+        <span class="etiqueta-seccion">Los más pedidos</span>
+        <h2>Productos destacados</h2>
+        <p class="intro-seccion">
+          Conoce nuestros productos estrella para iniciar un estilo de vida más natural. Consulta disponibilidad y atención personalizada por WhatsApp.
+        </p>
 
-    <div class="cuadricula">
-      <a href="productos.html#digestion" class="necesidad">
-        <span class="icono">
-          <img src="img/digestion.png" alt="">
-        </span>
-        Digestión y desintoxicación
-      </a>
+        <!-- Sistema Grid para productos -->
+        <div class="grid-productos">
 
-      <a href="productos.html#energia" class="necesidad">
-        <span class="icono">
-          <img src="img/energia.png" alt="">
-        </span>
-        Energía y vitalidad
-      </a>
+          <!-- Producto 1: Cúrcuma -->
+          <article class="producto animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/productos/curcuma.jpeg" alt="Harina de Cúrcuma natural">
+            <div class="producto-cuerpo">
+              <span class="etiqueta">Más vendido</span>
+              <span class="categoria">Digestión</span>
+              <h3>Cúrcuma</h3>
+              <p class="descripcion-corta">"Apoyo natural para bienestar"</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 29.90</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20deseo%20consultar%20sobre%20la%20C%C3%BArcuma" class="boton boton-verde" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </div>
+          </article>
 
-      <a href="productos.html#huesos" class="necesidad">
-        <span class="icono">
-          <img src="img/huesos.png" alt="">
-        </span>
-        Huesos y articulaciones
-      </a>
+          <!-- Producto 2: Aguaje + Maca negra -->
+          <article class="producto animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/productos/aguaje.jpeg" alt="Cápsulas de aguaje con maca negra">
+            <div class="producto-cuerpo">
+              <span class="etiqueta etiqueta-recomendado">Recomendado</span>
+              <span class="categoria">Energía y vitalidad</span>
+              <h3>Aguaje + Maca negra</h3>
+              <p class="descripcion-corta">"Energía sostenida y equilibrio hormonal"</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 45.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20deseo%20consultar%20sobre%20el%20Aguaje%20con%20Maca%20negra" class="boton boton-verde" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </div>
+          </article>
 
-      <a href="productos.html#defensas" class="necesidad">
-        <span class="icono">
-          <img src="img/defensas.png" alt="">
-        </span>
-        Defensas
-      </a>
+          <!-- Producto 3: Colágeno + Vitamina C -->
+          <article class="producto animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/productos/colageno.jpeg" alt="Colágeno hidrolizado con vitamina C">
+            <div class="producto-cuerpo">
+              <span class="etiqueta etiqueta-oferta">En oferta</span>
+              <span class="categoria">Belleza y movilidad</span>
+              <h3>Colágeno + Vitamina C</h3>
+              <p class="descripcion-corta">"Piel más firme y cuidado articular"</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 69.90</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20deseo%20consultar%20sobre%20el%20Col%C3%A1geno%20con%20Vitamina%20C" class="boton boton-verde" target="_blank" rel="noopener">Consultar</a>
+              </div>
+            </div>
+          </article>
 
-      <a href="productos.html#corazon" class="necesidad">
-        <span class="icono">
-          <img src="img/corazon.png" alt="">
-        </span>
-        Corazón y presión
-      </a>
+        </div>
 
-      <a href="productos.html#piel" class="necesidad">
-        <span class="icono">
-          <img src="img/piel.png" alt="">
-        </span>
-        Belleza y piel
-      </a>
-
-      <a href="productos.html#descanso" class="necesidad">
-        <span class="icono">
-          <img src="img/descanso.png" alt="">
-        </span>
-        Descanso y estrés
-      </a>
-    </div>
-  </div>
-</section>
+        <p class="enlace-mas">
+          <a href="productos.html">Ver el catálogo completo de todos los productos</a>
+        </p>
+      </div>
+    </section>
 
 
-    <!-- ---------- Cómo funciona (4 pasos en orden) ---------- -->
+    <!-- ---------- Cómo funciona ---------- -->
     <section class="seccion fondo-blanco" id="como-funciona">
       <div class="contenedor">
         <span class="etiqueta-seccion">Cómo funciona</span>
@@ -194,22 +421,22 @@
         </p>
 
         <div class="cuadricula">
-          <article class="paso">
+          <article class="paso animacion-tarjeta">
             <span class="numero">Paso 1</span>
             <h3>Nos cuentas</h3>
             <p>Qué quieres mejorar, desde cuándo y qué tomas hoy. Sin formularios eternos.</p>
           </article>
-          <article class="paso">
+          <article class="paso animacion-tarjeta">
             <span class="numero">Paso 2</span>
             <h3>Te recomendamos</h3>
             <p>Elegimos 1 o 2 productos, no diez, con la dosis exacta para tu caso.</p>
           </article>
-          <article class="paso">
+          <article class="paso animacion-tarjeta">
             <span class="numero">Paso 3</span>
             <h3>Lo tomas con guía</h3>
-            <p>Horario, tiempo de uso y qué combinar. Te recordamos  sobre su consumo.</p>
+            <p>Horario, tiempo de uso y qué combinar. Te recordamos sobre su consumo.</p>
           </article>
-          <article class="paso">
+          <article class="paso animacion-tarjeta">
             <span class="numero">Paso 4</span>
             <h3>Notas el cambio</h3>
             <p>Revisamos contigo a las 3 semanas y ajustamos si hace falta.</p>
@@ -219,74 +446,137 @@
     </section>
 
 
-    <!-- ---------- Productos destacados (3 tarjetas) ---------- -->
-    <section class="seccion" id="destacados">
+    <!-- ---------- Sección: Conoce nuestros productos ---------- -->
+    <section class="seccion" id="galeria">
       <div class="contenedor">
-        <span class="etiqueta-seccion">Los más pedidos</span>
-        <h2>Tres de los productos mas solicitados para empezar</h2>
+        <span class="etiqueta-seccion">Catálogo y Variedad</span>
+        <h2>Conoce nuestros productos</h2>
         <p class="intro-seccion">
-          Precios referenciales en tienda. Consulta disponibilidad por WhatsApp.
+          Explora nuestras líneas especializadas para cuidar tu salud de forma integral y natural.
+        </p>
+
+        <!-- Galería Grid con categorías y tarjetas -->
+        <div class="grid-galeria">
+
+          <!-- Tarjeta 1: Digestión -->
+          <a href="productos.html#digestion" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_digestion.jpg" alt="Categoría Digestión y Limpieza">
+            <div class="galeria-info">
+              <h3>Digestión</h3>
+            </div>
+          </a>
+
+          <!-- Tarjeta 2: Energía -->
+          <a href="productos.html#energia" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_energia.jpg" alt="Categoría Energía y Vitalidad">
+            <div class="galeria-info">
+              <h3>Energía y Vitalidad</h3>
+            </div>
+          </a>
+
+          <!-- Tarjeta 3: Articulaciones -->
+          <a href="productos.html#huesos" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_articulaciones.jpg" alt="Categoría Huesos y Articulaciones">
+            <div class="galeria-info">
+              <h3>Huesos y Articulaciones</h3>
+            </div>
+          </a>
+
+          <!-- Tarjeta 4: Defensas -->
+          <a href="productos.html#defensas" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_defensas.jpg" alt="Categoría Defensas e Inmunidad">
+            <div class="galeria-info">
+              <h3>Defensas</h3>
+            </div>
+          </a>
+
+          <!-- Tarjeta 5: Corazón -->
+          <a href="productos.html#corazon" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_corazon.jpg" alt="Categoría Corazón y Presión">
+            <div class="galeria-info">
+              <h3>Corazón y Presión</h3>
+            </div>
+          </a>
+
+          <!-- Tarjeta 6: Descanso -->
+          <a href="productos.html#descanso" class="tarjeta-galeria animacion-tarjeta">
+            <img loading="lazy" decoding="async" src="img/categorias/cat_descanso.jpg" alt="Categoría Descanso y Relajación">
+            <div class="galeria-info">
+              <h3>Descanso y Estrés</h3>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ---------- qué quieres mejorar -->
+    <section class="seccion fondo-blanco" id="necesidades">
+      <div class="contenedor">
+        <span class="etiqueta-seccion">Empecemos por ti</span>
+        <h2>¿Qué quieres mejorar hoy?</h2>
+        <p class="intro-seccion">
+          Elige una necesidad y te mostramos qué tomar, cuánto y por cuánto tiempo.
+          Sin costo y sin compromiso de compra.
         </p>
 
         <div class="cuadricula">
+          <a href="productos.html#digestion" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/digestion.png" alt="">
+            </span>
+            Digestión y desintoxicación
+          </a>
 
-          <article class="producto">
-            <!-- REEMPLAZAR: foto real del producto -->
-            <img src="img/productos/curcuma.jpeg" alt="Bolsa de harina de cúrcuma de 200 gramos">
-            <div class="producto-cuerpo">
-              <span class="etiqueta">Más vendido</span>
-              <span class="categoria">Huesos y articulaciones</span>
-              <h3>Harina de cúrcuma 200 g</h3>
-              <p>Antiinflamatorio natural que se siente en las articulaciones y en la digestión.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cucharadita en agua tibia, 2 veces al día, por 3 meses.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 29.90</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20la%20harina%20de%20c%C3%BArcuma" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
+          <a href="productos.html#energia" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/energia.png" alt="">
+            </span>
+            Energía y vitalidad
+          </a>
 
-          <article class="producto">
-            <img src="img/productos/aguaje.jpeg" alt="Frasco de cápsulas de aguaje con maca negra">
-            <div class="producto-cuerpo">
-              <span class="etiqueta">Recomendado</span>
-              <span class="categoria">Energía y equilibrio</span>
-              <h3>Aguaje + Maca negra</h3>
-              <p>Energía sostenida durante el día y apoyo al equilibrio hormonal femenino.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas con el desayuno, en ciclos de 3 meses.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 45.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20aguaje%20con%20maca%20negra" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
+          <a href="productos.html#huesos" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/huesos.png" alt="">
+            </span>
+            Huesos y articulaciones
+          </a>
 
-          <article class="producto">
-            <img src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo">
-            <div class="producto-cuerpo">
-              <span class="etiqueta">En oferta</span>
-              <span class="categoria">Piel y movilidad</span>
-              <h3>Colágeno + Vitamina C</h3>
-              <p>Piel más firme y articulaciones cuidadas, con absorción rápida y sabor neutro.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida (10 g) en agua, una vez al día en ayunas.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 69.90</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno%20con%20vitamina%20C" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
+          <a href="productos.html#defensas" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/defensas.png" alt="">
+            </span>
+            Defensas
+          </a>
 
+          <a href="productos.html#corazon" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/corazon.png" alt="">
+            </span>
+            Corazón y presión
+          </a>
+
+          <a href="productos.html#piel" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/piel.png" alt="">
+            </span>
+            Belleza y piel
+          </a>
+
+          <a href="productos.html#descanso" class="necesidad">
+            <span class="icono">
+              <img loading="lazy" decoding="async" src="img/descanso.png" alt="">
+            </span>
+            Descanso y estrés
+          </a>
         </div>
-
-        <p class="enlace-mas">
-          <a href="productos.html">Ver la tabla comparativa de todos los productos</a>
-        </p>
       </div>
     </section>
 
 
     <!-- ---------- Testimonios ---------- -->
-    <section class="seccion fondo-blanco" id="testimonios">
+    <section class="seccion" id="testimonios">
       <div class="contenedor">
         <span class="etiqueta-seccion">Historias reales</span>
         <h2>Personas que ya hicieron el cambio</h2>
@@ -315,6 +605,62 @@
             <cite>Paola H. · Tacna</cite>
           </blockquote>
         </div>
+      </div>
+    </section>
+
+
+    <!-- ---------- TURNO 11: Últimos consejos del blog ---------- -->
+    <section class="seccion fondo-blanco" id="consejos">
+      <div class="contenedor">
+        <span class="etiqueta-seccion">Blog</span>
+        <h2>Últimos consejos naturales</h2>
+        <p class="intro-seccion">
+          Guías cortas para aprovechar mejor cada producto: cómo tomarlo, a qué hora y qué errores evitar.
+        </p>
+
+        <div class="blog-grid">
+
+          <article class="blog-tarjeta animacion-tarjeta">
+            <a href="blog.html#articulo-curcuma" class="blog-imagen">
+              <img loading="lazy" decoding="async" width="640" height="1002" src="img/productos/curcuma.jpeg" alt="Bolsa de cúrcuma con jengibre y pimienta negra">
+              <span class="blog-categoria">Digestión</span>
+            </a>
+            <div class="blog-cuerpo">
+              <h3>Las mejores formas de consumir cúrcuma</h3>
+              <p>Sola se absorbe poco. Con estos trucos sencillos le sacas mucho más provecho.</p>
+              <a href="blog.html#articulo-curcuma" class="blog-leer">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="blog-tarjeta animacion-tarjeta">
+            <a href="blog.html#articulo-maca" class="blog-imagen">
+              <img loading="lazy" decoding="async" width="640" height="853" src="img/productos/maca negra.jpeg" alt="Frasco de cápsulas de maca negra">
+              <span class="blog-categoria">Energía</span>
+            </a>
+            <div class="blog-cuerpo">
+              <h3>Maca negra: cuándo y cómo tomarla</h3>
+              <p>La hora en que la tomas hace la diferencia entre tener energía o desvelarte.</p>
+              <a href="blog.html#articulo-maca" class="blog-leer">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="blog-tarjeta animacion-tarjeta">
+            <a href="blog.html#articulo-magnesio" class="blog-imagen">
+              <img loading="lazy" decoding="async" width="640" height="853" src="img/productos/magnesio complex.jpeg" alt="Frasco de cápsulas Magnesio Complex">
+              <span class="blog-categoria">Descanso</span>
+            </a>
+            <div class="blog-cuerpo">
+              <h3>Magnesio para dormir mejor</h3>
+              <p>Si te cuesta desconectar por la noche, el magnesio puede ser un buen aliado.</p>
+              <a href="blog.html#articulo-magnesio" class="blog-leer">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="enlace-mas">
+          <a href="blog.html">Ver todos los consejos del blog</a>
+        </p>
       </div>
     </section>
 
@@ -348,24 +694,31 @@
           <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
         </div>
 
-        <div class="pie-columna">
+        <div class="pie-columna pie-contacto">
           <h3>Contacto</h3>
           <ul>
-            <!-- REEMPLAZAR: datos reales de los locales -->
-            <li>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</li>
-            <li>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</li>
-            <li>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></li>
-            <li>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></li>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
           </ul>
         </div>
 
         <div class="pie-columna">
-          <h3>Secciones</h3>
+          <h3>Enlaces rápidos</h3>
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="productos.html">Productos</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+          
+            <li><a href="PreguntasFrecuentes.html">Preguntas frecuentes</a></li>
+            
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
           </ul>
         </div>
 
@@ -373,9 +726,10 @@
           <h3>Síguenos</h3>
           <!-- REEMPLAZAR: enlaces reales de las redes sociales -->
           <div class="redes">
-            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener">TikTok</a>
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
           </div>
         </div>
 
@@ -392,7 +746,12 @@
 
     </div>
   </footer>
-
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
+  <!-- Las tarjetas aparecen al hacer scroll (Turno 4 + Turno 11) -->
+  <script src="js/animaciones.js"></script>
 </body>
 
 </html>
+
+
