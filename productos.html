@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -25,16 +26,26 @@
           <img src="img/logo.png" alt="Logo de Casa Naturista China">
           <span>Casa Naturista<br>China</span>
         </a>
+
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
         <nav>
           <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html" class="activo">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html" class="activo"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
+        <!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
-          WhatsApp 919 589 549
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
       </div>
     </div>
@@ -43,15 +54,486 @@
 
   <main>
 
-    <!-- ---------- Título de la página ---------- -->
-    <section class="seccion">
+
+    <!-- ==========================================================
+         TURNO 7 — CARRUSEL DE PRODUCTOS
+         - .carrusel-pista es una fila horizontal con "scroll-snap":
+           cada tarjeta se detiene justo en el borde al desplazarse.
+         - Los botones siguiente/anterior y la rotación automática
+           están programados en js/carrusel.js
+         - Las fotos usan el mismo archivo que el catálogo (ya optimizado).
+         ========================================================== -->
+    <section class="seccion fondo-blanco" id="carrusel">
+      <div class="contenedor">
+        <span class="etiqueta-seccion">Los más pedidos</span>
+        <h2>Productos en vitrina</h2>
+        <p class="intro-seccion">Desliza o usa las flechas para ver algunos de nuestros productos favoritos.</p>
+
+        <div class="carrusel" role="region" aria-roledescription="carrusel" aria-label="Productos más pedidos">
+          <button type="button" class="carrusel-boton carrusel-anterior" aria-label="Producto anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="carrusel-pista" tabindex="0" aria-live="off">
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="1 de 8">
+              <img src="img/productos/curcuma.jpeg" alt="Bolsa de harina de cúrcuma de 200 gramos" loading="eager" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="etiqueta etiqueta-recomendado">Recomendado</span>
+                <span class="categoria">Digestión</span>
+                <h3>Harina de cúrcuma 200 g</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 29.90</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20harina%20de%20c%C3%BArcuma" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="2 de 8">
+              <img src="img/productos/carbon-activado.jpeg" alt="Frasco de cápsulas de carbón activado" loading="eager" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="etiqueta">Más vendido</span>
+                <span class="categoria">Digestión</span>
+                <h3>Carbón activado</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 35.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20carb%C3%B3n%20activado" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="3 de 8">
+              <img src="img/productos/aguaje.jpeg" alt="Frasco de cápsulas de aguaje con maca negra" loading="eager" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Energía</span>
+                <h3>Aguaje + Maca negra</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 45.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20aguaje%20con%20maca%20negra" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="4 de 8">
+              <img src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo" loading="lazy" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Articulaciones</span>
+                <h3>Colágeno + Vitamina C</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 69.90</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno%20con%20vitamina%20C" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="5 de 8">
+              <img src="img/productos/moringa.jpeg" alt="Frasco de cápsulas de moringa" loading="lazy" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Defensas</span>
+                <h3>Moringa</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 32.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20moringa" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="6 de 8">
+              <img src="img/productos/unadegato.jpg" alt="Frasco de cápsulas de uña de gato" loading="lazy" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Defensas</span>
+                <h3>Uña de gato</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 28.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20u%C3%B1a%20de%20gato" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="7 de 8">
+              <img src="img/productos/omega-3.jfif" alt="Frasco de cápsulas de omega 3" loading="lazy" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Corazón</span>
+                <h3>Omega 3 Puro</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 55.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20omega%203" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="carrusel-item" aria-roledescription="diapositiva" aria-label="8 de 8">
+              <img src="img/productos/miel1.jpg" alt="Frasco de miel de abeja de 500 gramos" loading="lazy" decoding="async">
+              <div class="carrusel-cuerpo">
+                <span class="categoria">Descanso</span>
+                <h3>Miel de abeja 500 g</h3>
+                <div class="producto-pie">
+                  <span class="precio">S/ 25.00</span>
+                  <a href="https://wa.me/51919589549?text=Hola,%20quiero%20miel%20de%20abeja" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <button type="button" class="carrusel-boton carrusel-siguiente" aria-label="Producto siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!--Productos por necesidad-->
+    <section class="seccion" id="por-necesidad">
       <div class="contenedor">
         <span class="etiqueta-seccion">Catálogo</span>
-        <h2>Compara antes de decidir</h2>
-        <p class="intro-seccion">
-          Toda la información en un solo lugar: para qué sirve, cómo se toma,
-          presentación, precio y en qué local lo encuentras hoy.
-        </p>
+        <h2>Productos por necesidad</h2>
+        <p class="intro-seccion">Los productos más recomendados para tu salud, organizados según lo que deseas mejorar.</p>
+
+        <!-- 1 Digestión -->
+        <h3 class="titulo-grupo" id="digestion">Digestión y desintoxicación</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/carbon-activado.jpeg" alt="Frasco de cápsulas de carbón activado">
+            <div class="producto-cuerpo">
+              <span class="etiqueta">Más vendido</span>
+              <span class="categoria">Digestión</span>
+              <h3>Carbón activado</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Ayuda a desintoxicar y alivia la hinchazón después de las comidas.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas, alejadas de las comidas y medicamentos.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 35.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20carb%C3%B3n%20activado" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/curcuma.jpeg" alt="Bolsa de harina de cúrcuma de 200 gramos">
+            <div class="producto-cuerpo">
+              <span class="etiqueta etiqueta-recomendado">Recomendado</span>
+              <span class="categoria">Digestión</span>
+              <h3>Harina de cúrcuma 200 g</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Antiinflamatorio natural que también apoya la digestión y el hígado.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cucharadita en agua tibia, 2 veces al día.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 29.90</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20harina%20de%20c%C3%BArcuma" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/papaya cleanse 1.jpeg" alt="Frasco de Papaya Cleanse">
+            <div class="producto-cuerpo">
+              <span class="etiqueta etiqueta-oferta">En oferta</span>
+              <span class="categoria">Digestión</span>
+              <h3>Papaya Cleanse</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Limpieza intestinal natural, combate el tránsito lento y la pesadez.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida en las noches antes de acostarse.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 42.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Papaya%20Cleanse" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2 Energía -->
+        <h3 class="titulo-grupo" id="energia">Energía y vitalidad</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/aguaje.jpeg" alt="Frasco de cápsulas de aguaje con maca negra">
+            <div class="producto-cuerpo">
+              <span class="categoria">Energía</span>
+              <h3>Aguaje + Maca negra</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Energía sostenida durante el día y apoyo al equilibrio hormonal femenino.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas con el desayuno diariamente.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 45.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20aguaje%20con%20maca%20negra" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/maca negra.jpeg" alt="Frasco de cápsulas de Maca Negra pura">
+            <div class="producto-cuerpo">
+              <span class="categoria">Energía</span>
+              <h3>Maca Negra Pura</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Aumenta la resistencia física, combate el cansancio y mejora la concentración.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas por la mañana con abundante agua.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 38.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Maca%20Negra%20Pura" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/alphaman.jpeg" alt="Frasco de cápsulas Alphaman">
+            <div class="producto-cuerpo">
+              <span class="categoria">Energía</span>
+              <h3>Alphaman Energy</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Fórmula vigorizante para el rendimiento, fuerza física y vitalidad masculina.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula al día por las mañanas.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 55.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Alphaman" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 3 Huesos -->
+        <h3 class="titulo-grupo" id="huesos">Huesos y articulaciones</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo">
+            <div class="producto-cuerpo">
+              <span class="categoria">Articulaciones</span>
+              <h3>Colágeno + Vitamina C</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Cuida y regenera el cartílago en rodillas, hombros y columna.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida (10 g) en agua en ayunas.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 69.90</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno%20con%20vitamina%20C" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/Arthyzhan.jpeg" alt="Frasco de cápsulas Arthyzhan para articulaciones">
+            <div class="producto-cuerpo">
+              <span class="categoria">Articulaciones</span>
+              <h3>Arthyzhan Articular</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Alivio rápido para la rigidez y el dolor en coyunturas y articulaciones.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula 2 veces al día después de alimentos.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 49.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Arthyzhan" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/magnesio complex.jpeg" alt="Frasco de cápsulas Magnesio Complex">
+            <div class="producto-cuerpo">
+              <span class="categoria">Articulaciones</span>
+              <h3>Magnesio Complex</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Fijador natural de calcio, previene la osteoporosis y alivia calambres.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas por las noches con agua tibia.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 46.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Magnesio%20Complex" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 4 Defensas -->
+        <h3 class="titulo-grupo" id="defensas">Defensas</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/moringa.jpeg" alt="Frasco de cápsulas de moringa">
+            <div class="producto-cuerpo">
+              <span class="categoria">Defensas</span>
+              <h3>Moringa</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Aporte de vitaminas y antioxidantes para reforzar las defensas.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula con el almuerzo.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 32.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20moringa" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/unadegato.jpg" alt="Frasco de cápsulas de uña de gato">
+            <div class="producto-cuerpo">
+              <span class="categoria">Defensas</span>
+              <h3>Uña de gato</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Planta peruana tradicional para el refuerzo del sistema inmune.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula, 2 veces al día con alimentos.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 28.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20u%C3%B1a%20de%20gato" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/aceite de oregano.jpeg" alt="Frasco de Aceite de Orégano">
+            <div class="producto-cuerpo">
+              <span class="categoria">Defensas</span>
+              <h3>Aceite de Orégano</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Potente antibacteriano y antiviral natural para vías respiratorias e inmunidad.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 3 a 5 gotas diluidas en agua o jugo.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 39.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Aceite%20de%20Or%C3%A9gano" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 5 Corazón -->
+        <h3 class="titulo-grupo" id="corazon">Corazón y presión</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/omega-3.jfif" alt="Frasco de cápsulas de omega 3">
+            <div class="producto-cuerpo">
+              <span class="categoria">Corazón</span>
+              <h3>Omega 3 Puro</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Apoyo a la salud del corazón, circulación y control del colesterol.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula con el desayuno.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 55.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20omega%203" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/cardiox.jpeg" alt="Frasco de cápsulas Cardiox">
+            <div class="producto-cuerpo">
+              <span class="categoria">Corazón</span>
+              <h3>Cardiox Arterial</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Favorece la elasticidad vascular y el equilibrio de la presión sanguínea.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula 2 veces al día antes de comer.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 48.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Cardiox" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/actiomega.jpeg" alt="Frasco de cápsulas Actiomega">
+            <div class="producto-cuerpo">
+              <span class="categoria">Corazón</span>
+              <h3>Actiomega Cardio</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Concentrado de ácidos grasos EPA/DHA para cuidar el sistema cardiovascular.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula blanda con el almuerzo.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 52.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Actiomega" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 6 Piel -->
+        <h3 class="titulo-grupo" id="piel">Belleza y piel</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo">
+            <div class="producto-cuerpo">
+              <span class="categoria">Piel</span>
+              <h3>Colágeno + Vitamina C</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Piel más firme y luminosa con absorción rápida y sabor neutro.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida (10 g) en agua, en ayunas.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 69.90</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/aceite de coco.jpeg" alt="Frasco de Aceite de Coco virgen">
+            <div class="producto-cuerpo">
+              <span class="categoria">Piel</span>
+              <h3>Aceite de Coco Virgen</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Nutrición e hidratación profunda para cutis, cabello y cuidado corporal.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> Aplicar directo en piel o 1 cucharada diaria.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 34.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Aceite%20de%20Coco" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/biofem1.jpeg" alt="Frasco de cápsulas Biofem">
+            <div class="producto-cuerpo">
+              <span class="categoria">Piel</span>
+              <h3>Biofem Mujer</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Bienestar femenino, revitalización de la piel y equilibrio hormonal.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas al día con alimentos.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 45.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Biofem" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 7 Descanso -->
+        <h3 class="titulo-grupo" id="descanso">Descanso y estrés</h3>
+        <div class="grid-productos">
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/miel1.jpg" alt="Frasco de miel de abeja de 500 gramos">
+            <div class="producto-cuerpo">
+              <span class="categoria">Descanso</span>
+              <h3>Miel de abeja 500 g</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Induce el descanso natural nocturno y suaviza la garganta.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cucharada antes de dormir.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 25.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20miel%20de%20abeja" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/magnesio complex.jpeg" alt="Frasco de cápsulas Magnesio Complex">
+            <div class="producto-cuerpo">
+              <span class="categoria">Descanso</span>
+              <h3>Magnesio Complex Relax</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Relajación neuromuscular profunda, alivia el insomnio y el estrés diario.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas 30 minutos antes de dormir.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 46.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20Magnesio%20Complex" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img loading="lazy" decoding="async" src="img/productos/te verde 1.jpeg" alt="Caja de Té Verde antioxidante">
+            <div class="producto-cuerpo">
+              <span class="categoria">Descanso</span>
+              <h3>Té Verde Antioxidante</h3>
+              <p class="estado-stock disponible">● Disponible en tienda</p>
+              <p>Rico en L-teanina calmante, ideal para despejar la mente y bajar tensiones.</p>
+              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 taza tibia a media tarde o noche.</p>
+              <div class="producto-pie">
+                <span class="precio">S/ 22.00</span>
+                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20T%C3%A9%20Verde" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
       </div>
     </section>
 
@@ -166,169 +648,6 @@
       </div>
     </section>
 
-
-    <!-- ---------- Productos por necesidad ----------
-         Cada bloque tiene un id que se usa desde index.html (productos.html#digestion) -->
-    <section class="seccion" id="por-necesidad">
-      <div class="contenedor">
-        <h2>Productos por necesidad</h2>
-        <p class="intro-seccion">Los mismos productos de la tabla, agrupados según lo que quieres mejorar.</p>
-
-        <!-- Digestión -->
-        <h3 class="titulo-grupo" id="digestion">Digestión y desintoxicación</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/carbon-activado.jpeg" alt="Frasco de cápsulas de carbón activado">
-            <div class="producto-cuerpo">
-              <span class="categoria">Digestión</span>
-              <h3>Carbón activado</h3>
-              <p>Ayuda a desintoxicar y alivia la hinchazón después de las comidas.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas, alejadas de las comidas y de otros medicamentos.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 35.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20carb%C3%B3n%20activado" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-          <article class="producto">
-            <img src="img/productos/curcuma.jpeg" alt="Bolsa de harina de cúrcuma de 200 gramos">
-            <div class="producto-cuerpo">
-              <span class="categoria">Digestión</span>
-              <h3>Harina de cúrcuma 200 g</h3>
-              <p>Antiinflamatorio natural que también apoya la digestión.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cucharadita en agua tibia, 2 veces al día, por 3 meses.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 29.90</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20harina%20de%20c%C3%BArcuma" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Energía -->
-        <h3 class="titulo-grupo" id="energia">Energía y vitalidad</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/aguaje.jpeg" alt="Frasco de cápsulas de aguaje con maca negra">
-            <div class="producto-cuerpo">
-              <span class="categoria">Energía</span>
-              <h3>Aguaje + Maca negra</h3>
-              <p>Energía sostenida durante el día y apoyo al equilibrio hormonal femenino.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 2 cápsulas con el desayuno, en ciclos de 3 meses.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 45.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20aguaje%20con%20maca%20negra" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Huesos -->
-        <h3 class="titulo-grupo" id="huesos">Huesos y articulaciones</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo">
-            <div class="producto-cuerpo">
-              <span class="categoria">Articulaciones</span>
-              <h3>Colágeno + Vitamina C</h3>
-              <p>Cuida las articulaciones y mejora la firmeza de la piel.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida (10 g) en agua, una vez al día en ayunas.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 69.90</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno%20con%20vitamina%20C" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Defensas -->
-        <h3 class="titulo-grupo" id="defensas">Defensas</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/moringa.jpeg" alt="Frasco de cápsulas de moringa">
-            <div class="producto-cuerpo">
-              <span class="categoria">Defensas</span>
-              <h3>Moringa</h3>
-              <p>Aporte de vitaminas y minerales para reforzar las defensas.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula con el almuerzo.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 32.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20moringa" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-          <article class="producto">
-            <img src="img/productos/unadegato.jpg" alt="Frasco de cápsulas de uña de gato">
-            <div class="producto-cuerpo">
-              <span class="categoria">Defensas</span>
-              <h3>Uña de gato</h3>
-              <p>Planta peruana tradicional para el refuerzo del sistema inmune.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula, 2 veces al día.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 28.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20u%C3%B1a%20de%20gato" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Corazón -->
-        <h3 class="titulo-grupo" id="corazon">Corazón y presión</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/omega-3.jfif" alt="Frasco de cápsulas de omega 3">
-            <div class="producto-cuerpo">
-              <span class="categoria">Corazón</span>
-              <h3>Omega 3</h3>
-              <p>Apoyo a la salud del corazón y la memoria.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cápsula con el desayuno.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 55.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20omega%203" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Piel -->
-        <h3 class="titulo-grupo" id="piel">Belleza y piel</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/colageno.jpeg" alt="Frasco de colágeno con vitamina C en polvo">
-            <div class="producto-cuerpo">
-              <span class="categoria">Piel</span>
-              <h3>Colágeno + Vitamina C</h3>
-              <p>Piel más firme con absorción rápida y sabor neutro.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 medida (10 g) en agua, en ayunas.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 69.90</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20col%C3%A1geno" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Descanso -->
-        <h3 class="titulo-grupo" id="descanso">Descanso y estrés</h3>
-        <div class="cuadricula">
-          <article class="producto">
-            <img src="img/productos/miel1.jpg" alt="Frasco de miel de abeja de 500 gramos">
-            <div class="producto-cuerpo">
-              <span class="categoria">Descanso</span>
-              <h3>Miel de abeja 500 g</h3>
-              <p>Ayuda a descansar mejor y calma la garganta.</p>
-              <p class="como-tomar"><strong>Cómo tomarlo:</strong> 1 cucharada antes de dormir.</p>
-              <div class="producto-pie">
-                <span class="precio">S/ 25.00</span>
-                <a href="https://wa.me/51919589549?text=Hola,%20quiero%20miel%20de%20abeja" class="boton boton-verde" target="_blank" rel="noopener">Lo quiero</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
   </main>
 
 
@@ -343,30 +662,35 @@
           </a>
           <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
         </div>
-        <div class="pie-columna">
+        <div class="pie-columna pie-contacto">
           <h3>Contacto</h3>
           <ul>
-            <li>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</li>
-            <li>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</li>
-            <li>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></li>
-            <li>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></li>
-          </ul>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
         </div>
         <div class="pie-columna">
-          <h3>Secciones</h3>
+          <h3>Enlaces rápidos</h3>
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="productos.html">Productos</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
           </ul>
         </div>
         <div class="pie-columna">
           <h3>Síguenos</h3>
           <div class="redes">
-            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener">TikTok</a>
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
           </div>
         </div>
       </div>
@@ -381,6 +705,11 @@
     </div>
   </footer>
 
+  <!-- TURNO 7: carrusel de productos -->
+  <script src="js/carrusel.js"></script>
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
 </body>
 
 </html>
+

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog de Casa Naturista China: consejos naturales sobre cúrcuma, maca, moringa, uña de gato, magnesio y té verde.">
+  <title>Blog y consejos naturales | Casa Naturista China</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <!-- TURNO 11: estilos propios del blog y de la página 404 -->
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ===== ENCABEZADO (igual en todas las páginas) ===== -->
+  <header>
+    <div class="barra-superior">
+      Envíos a todo el Perú &nbsp;|&nbsp; Productos 100 % originales &nbsp;|&nbsp; 2 locales en Tacna
+    </div>
+    <div class="encabezado">
+      <div class="contenedor">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Logo de Casa Naturista China">
+          <span>Casa Naturista<br>China</span>
+        </a>
+
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
+        <nav>
+          <ul class="menu">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html" class="activo"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
+          </ul>
+        </nav>
+        <!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==================================================================
+       TURNO 11 — BLOG / CONSEJOS NATURALES
+       - Artículos con imagen y categoría.
+       - Grid de 3 columnas (2 en tablet, 1 en celular).
+       - Tarjetas con animación de entrada y efecto hover.
+       - Filtro por categoría con js/blog.js.
+       ================================================================== -->
+  <main>
+
+    <!-- ---------- Cabecera del blog ---------- -->
+    <section class="blog-cabecera">
+      <div class="contenedor">
+        <i class="fa-solid fa-leaf blog-hoja blog-hoja-izquierda" aria-hidden="true"></i>
+        <i class="fa-solid fa-seedling blog-hoja blog-hoja-derecha" aria-hidden="true"></i>
+
+        <span class="etiqueta-seccion">Blog</span>
+        <h1>Consejos naturales</h1>
+        <p>
+          Guías cortas y prácticas para aprovechar mejor los productos naturales:
+          cómo tomarlos, a qué hora y qué errores evitar.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ---------- Filtros + artículos ---------- -->
+    <section class="seccion">
+      <div class="contenedor">
+
+        <!-- CATEGORÍAS: cada botón filtra las tarjetas por su data-categoria -->
+        <div class="blog-filtros" role="group" aria-label="Filtrar artículos por categoría">
+          <button type="button" class="blog-filtro activo" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="blog-filtro" data-filtro="digestion" aria-pressed="false">Digestión</button>
+          <button type="button" class="blog-filtro" data-filtro="energia" aria-pressed="false">Energía</button>
+          <button type="button" class="blog-filtro" data-filtro="defensas" aria-pressed="false">Defensas</button>
+          <button type="button" class="blog-filtro" data-filtro="descanso" aria-pressed="false">Descanso</button>
+        </div>
+
+        <!-- GRID de artículos -->
+        <div class="blog-grid">
+
+          <!-- Artículo 1 (destacado: ocupa toda la fila) -->
+          <article id="articulo-curcuma" class="blog-tarjeta blog-destacada" data-categoria="digestion">
+            <div class="blog-imagen">
+              <img src="img/productos/curcuma.jpeg" alt="Bolsa de cúrcuma con jengibre y pimienta negra" width="640" height="1002" decoding="async">
+              <span class="blog-categoria">Digestión</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-10-05">5 de octubre de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 3 min de lectura</p>
+              <h2>Las mejores formas de consumir cúrcuma</h2>
+              <p>
+                La cúrcuma es una de las raíces más usadas para aliviar la inflamación y apoyar
+                la digestión, pero el cuerpo la absorbe poco si se toma sola. Con estos trucos
+                sencillos le sacas mucho más provecho.
+              </p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <h3>4 formas fáciles de tomarla</h3>
+                  <ol>
+                    <li><strong>En agua tibia:</strong> 1 cucharadita disuelta en un vaso, 2 veces al día.</li>
+                    <li><strong>Leche dorada:</strong> cúrcuma, leche o bebida vegetal caliente, canela y una pizca de pimienta.</li>
+                    <li><strong>En tus comidas:</strong> agrégala a sopas, arroz, guisos o menestras al final de la cocción.</li>
+                    <li><strong>En jugos:</strong> combina muy bien con naranja, zanahoria y jengibre.</li>
+                  </ol>
+                  <h3>Tres claves para absorberla mejor</h3>
+                  <ul>
+                    <li>Acompáñala con <strong>pimienta negra</strong>: mejora mucho su absorción.</li>
+                    <li>Tómala con algo de <strong>grasa saludable</strong> (palta, aceite de oliva o de coco).</li>
+                    <li>Sé constante: los cambios se notan después de 2 a 4 semanas de uso continuo.</li>
+                  </ul>
+                  <p>Si tomas anticoagulantes o tienes cálculos en la vesícula, consúltanos antes de empezar.</p>
+                  <a href="productos.html" class="blog-enlace">Ver la harina de cúrcuma en productos →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Artículo 2 -->
+          <article id="articulo-maca" class="blog-tarjeta" data-categoria="energia">
+            <div class="blog-imagen">
+              <img src="img/productos/maca negra.jpeg" alt="Frasco de cápsulas de maca negra" width="640" height="853" loading="lazy" decoding="async">
+              <span class="blog-categoria">Energía</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-09-28">28 de septiembre de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 2 min</p>
+              <h2>Maca negra: cuándo y cómo tomarla</h2>
+              <p>La maca negra es la variedad andina más buscada para el cansancio y la concentración. La hora en que la tomas hace la diferencia.</p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <ul>
+                    <li><strong>Por la mañana:</strong> 2 cápsulas con el desayuno y abundante agua.</li>
+                    <li><strong>Evítala de noche:</strong> puede dificultar el sueño en personas sensibles.</li>
+                    <li><strong>Haz pausas:</strong> después de 2 o 3 meses, descansa una semana.</li>
+                    <li><strong>Acompáñala:</strong> un desayuno con avena y fruta potencia su efecto.</li>
+                  </ul>
+                  <p>Si tienes problemas de tiroides o presión alta, consulta antes de usarla.</p>
+                  <a href="productos.html" class="blog-enlace">Ver productos de energía →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Artículo 3 -->
+          <article id="articulo-una-de-gato" class="blog-tarjeta" data-categoria="defensas">
+            <div class="blog-imagen">
+              <img src="img/productos/unadegato.jpg" alt="Frasco de cápsulas de uña de gato" width="640" height="640" loading="lazy" decoding="async">
+              <span class="blog-categoria">Defensas</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-09-20">20 de septiembre de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 2 min</p>
+              <h2>Uña de gato: la planta peruana para tus defensas</h2>
+              <p>Esta liana de la Amazonía se usa desde hace generaciones para reforzar el sistema inmune, sobre todo en cambios de estación.</p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <ul>
+                    <li><strong>Con alimentos:</strong> 1 cápsula, 2 veces al día, para cuidar el estómago.</li>
+                    <li><strong>En temporada de frío:</strong> empieza unas semanas antes del invierno.</li>
+                    <li><strong>Por ciclos:</strong> úsala de 4 a 8 semanas y luego descansa.</li>
+                  </ul>
+                  <p>No se recomienda en embarazo, lactancia ni junto a medicamentos inmunosupresores.</p>
+                  <a href="productos.html" class="blog-enlace">Ver productos para defensas →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Artículo 4 -->
+          <article id="articulo-magnesio" class="blog-tarjeta" data-categoria="descanso">
+            <div class="blog-imagen">
+              <img src="img/productos/magnesio complex.jpeg" alt="Frasco de cápsulas Magnesio Complex" width="640" height="853" loading="lazy" decoding="async">
+              <span class="blog-categoria">Descanso</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-09-12">12 de septiembre de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 2 min</p>
+              <h2>Magnesio para dormir mejor</h2>
+              <p>El magnesio ayuda a relajar los músculos y el sistema nervioso. Si te cuesta desconectar por la noche, puede ser un buen aliado.</p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <ul>
+                    <li><strong>Antes de dormir:</strong> 2 cápsulas, 30 minutos antes de acostarte.</li>
+                    <li><strong>Con agua tibia:</strong> ayuda a que el cuerpo entre en modo descanso.</li>
+                    <li><strong>Sin pantallas:</strong> apaga el celular media hora antes para notar más el efecto.</li>
+                    <li><strong>Sepáralo:</strong> tómalo 2 horas aparte de antibióticos u otros medicamentos.</li>
+                  </ul>
+                  <p>Si tienes una enfermedad renal, consulta con tu médico antes de tomar magnesio.</p>
+                  <a href="productos.html" class="blog-enlace">Ver productos para el descanso →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Artículo 5 -->
+          <article id="articulo-moringa" class="blog-tarjeta" data-categoria="defensas">
+            <div class="blog-imagen">
+              <img src="img/productos/moringa.jpeg" alt="Frasco de cápsulas de moringa" width="640" height="850" loading="lazy" decoding="async">
+              <span class="blog-categoria">Defensas</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-09-04">4 de septiembre de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 2 min</p>
+              <h2>Moringa: cómo sumarla a tu rutina</h2>
+              <p>La moringa aporta vitaminas y antioxidantes en muy poca cantidad. Te contamos cómo incluirla sin complicarte.</p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <ul>
+                    <li><strong>Con el almuerzo:</strong> 1 cápsula al día junto a la comida principal.</li>
+                    <li><strong>Empieza de a pocos:</strong> la primera semana observa cómo te sienta.</li>
+                    <li><strong>Combínala:</strong> frutas con vitamina C, como naranja o camu camu, la complementan bien.</li>
+                  </ul>
+                  <p>Si tomas medicación para la diabetes o la presión, pregunta antes: puede potenciar su efecto.</p>
+                  <a href="productos.html" class="blog-enlace">Ver productos para defensas →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Artículo 6 -->
+          <article id="articulo-te-verde" class="blog-tarjeta" data-categoria="descanso">
+            <div class="blog-imagen">
+              <img src="img/productos/te verde 1.jpeg" alt="Caja de té verde antioxidante" width="640" height="853" loading="lazy" decoding="async">
+              <span class="blog-categoria">Descanso</span>
+            </div>
+            <div class="blog-cuerpo">
+              <p class="blog-meta"><i class="fa-regular fa-calendar"></i> <time datetime="2026-08-27">27 de agosto de 2026</time> &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 2 min</p>
+              <h2>Té verde: 4 errores al prepararlo</h2>
+              <p>Una taza de té verde ayuda a despejar la mente y bajar tensiones, pero mal preparado queda amargo y pierde propiedades.</p>
+              <details class="blog-mas">
+                <summary>Leer artículo <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="blog-contenido">
+                  <ol>
+                    <li><strong>Usar agua hirviendo:</strong> deja reposar el agua 2 minutos antes de servirla.</li>
+                    <li><strong>Dejarlo demasiado tiempo:</strong> con 2 o 3 minutos de infusión es suficiente.</li>
+                    <li><strong>Tomarlo en ayunas:</strong> puede caer pesado; mejor después de comer algo.</li>
+                    <li><strong>Tomarlo muy tarde:</strong> tiene algo de cafeína; si eres sensible, que sea a media tarde.</li>
+                  </ol>
+                  <a href="productos.html" class="blog-enlace">Ver productos para el descanso →</a>
+                </div>
+              </details>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Solo se muestra si el filtro no encuentra artículos -->
+        <p class="blog-vacio" id="blog-vacio" hidden>Todavía no hay artículos en esta categoría.</p>
+
+        <p class="blog-aviso">
+          <strong>Importante:</strong> estos consejos son informativos y no reemplazan la consulta médica.
+          En embarazo, lactancia o tratamiento médico, consúltanos antes de empezar cualquier producto.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ---------- Llamado a la acción ---------- -->
+    <section class="seccion fondo-blanco blog-cta">
+      <div class="contenedor">
+        <h2>¿Tienes una duda sobre algún producto?</h2>
+        <p>Escríbenos y te orientamos según lo que necesitas, sin compromiso de compra.</p>
+        <a href="contacto.html" class="boton boton-naranja">Recibir asesoría gratis</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===== PIE DE PÁGINA (igual en todas las páginas) ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-columnas">
+        <div class="pie-columna">
+          <a href="index.html" class="logo">
+            <img src="img/logo.png" alt="Logo de Casa Naturista China">
+            <span>Casa Naturista<br>China</span>
+          </a>
+          <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
+        </div>
+        <div class="pie-columna pie-contacto">
+          <h3>Contacto</h3>
+          <ul>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
+          </ul>
+        </div>
+        <div class="pie-columna">
+          <h3>Síguenos</h3>
+          <div class="redes">
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+          </div>
+        </div>
+      </div>
+      <div class="pie-final">
+        <p>&copy; 2026 Casa Naturista China. Todos los derechos reservados.</p>
+        <ul>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Libro de reclamaciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
+  <!-- TURNO 11: filtro por categoría y animación al hacer scroll -->
+  <script src="js/blog.js"></script>
+</body>
+
+</html>

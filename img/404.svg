@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-labelledby="titulo">
+  <title id="titulo">Frasco vacío con cara triste rodeado de hojas</title>
+
+  <!-- TURNO 11: ilustración de la página 404. Las hojas se mecen con CSS. -->
+  <style>
+    .hoja { transform-box: fill-box; transform-origin: center; animation: mecer 3.5s ease-in-out infinite; }
+    .hoja-2 { animation-delay: -1.2s; }
+    .hoja-3 { animation-delay: -2.3s; }
+    .signo { animation: parpadear 2.4s ease-in-out infinite; }
+    .signo-2 { animation-delay: -1.2s; }
+    @keyframes mecer { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(12deg); } }
+    @keyframes parpadear { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    @media (prefers-reduced-motion: reduce) { .hoja, .signo { animation: none; } }
+  </style>
+
+  <!-- Fondo -->
+  <circle cx="200" cy="160" r="140" fill="#E4EFD6"/>
+  <ellipse cx="200" cy="286" rx="92" ry="10" fill="#1E5A2C" opacity="0.18"/>
+
+  <!-- Frasco -->
+  <rect x="158" y="62" width="84" height="26" rx="7" fill="#F28C28"/>
+  <rect x="166" y="86" width="68" height="16" fill="#FFFFFF" stroke="#1E5A2C" stroke-width="6"/>
+  <rect x="130" y="100" width="140" height="178" rx="26" fill="#FFFFFF" stroke="#1E5A2C" stroke-width="6"/>
+  <path d="M146 130 q0 -14 14 -14" fill="none" stroke="#E4EFD6" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Etiqueta con cara triste -->
+  <rect x="148" y="152" width="104" height="84" rx="12" fill="#FBF6EA" stroke="#4E9A2E" stroke-width="4"/>
+  <g stroke="#1E5A2C" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M172 176 l12 12 M184 176 l-12 12"/>
+    <path d="M216 176 l12 12 M228 176 l-12 12"/>
+    <path d="M180 218 q20 -18 40 0"/>
+  </g>
+
+  <!-- Hojas alrededor -->
+  <g class="hoja">
+    <path d="M70 120 q34 -30 58 4 q-34 30 -58 -4z" fill="#4E9A2E"/>
+    <path d="M76 120 q26 -2 46 4" fill="none" stroke="#1E5A2C" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <g class="hoja hoja-2">
+    <path d="M286 214 q36 -22 54 14 q-36 22 -54 -14z" fill="#7CB342"/>
+    <path d="M292 215 q24 2 42 12" fill="none" stroke="#1E5A2C" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <g class="hoja hoja-3">
+    <path d="M68 232 q22 -26 46 -4 q-22 26 -46 4z" fill="#F5C242"/>
+    <path d="M73 231 q20 -6 36 -2" fill="none" stroke="#1E5A2C" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Signos de pregunta -->
+  <g font-family="Poppins, Arial, sans-serif" font-weight="700" fill="#F28C28">
+    <text class="signo" x="286" y="112" font-size="56">?</text>
+    <text class="signo signo-2" x="326" y="150" font-size="34">?</text>
+  </g>
+</svg>

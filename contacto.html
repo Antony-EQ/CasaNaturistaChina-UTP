@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -25,17 +26,29 @@
           <img src="img/logo.png" alt="Logo de Casa Naturista China">
           <span>Casa Naturista<br>China</span>
         </a>
+
+        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
+             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
         <nav>
           <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html" class="activo">Contacto</a></li>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
+            <li><a href="nosotros.html"><i class="fa-solid fa-user-group"></i> Nosotros</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-book-open"></i> Blog</a></li>
+            <li><a href="contacto.html" class="activo"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
+        <!-- Botón de modo oscuro -->
+        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
-          WhatsApp 919 589 549
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
+
+        
       </div>
     </div>
   </header>
@@ -99,6 +112,58 @@
             </div>
           </div>
 
+           <!-- MOTIVO DE LA CONSULTA -->
+<div class="campo">
+  <label for="motivo">Motivo de la consulta</label>
+  <div class="entrada entrada-select">
+    <select id="motivo" name="motivo" required>
+      <option value="">Elige un motivo</option>
+      <option value="Asesoría sobre un producto">Asesoría sobre un producto</option>
+      <option value="Precios y disponibilidad">Precios y disponibilidad</option>
+      <option value="Hacer un pedido">Hacer un pedido</option>
+      <option value="Envío a domicilio">Envío a domicilio</option>
+      <option value="Compra mayorista">Compra mayorista</option>
+      <option value="Sugerencia o reclamo">Sugerencia o reclamo</option>
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
+  <p class="mensaje-campo" id="msg-motivo" role="alert"></p>
+</div>
+
+<!-- PREFERENCIA DE CONTACTO -->
+<div class="campo" id="campo-preferencia">
+  <span class="etiqueta-grupo" id="etq-preferencia">Preferencia de contacto</span>
+  <div class="opciones" role="radiogroup" aria-labelledby="etq-preferencia">
+    <label class="opcion">
+      <input type="radio" name="preferencia" value="WhatsApp" checked>
+      <span class="opcion-tarjeta"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
+    </label>
+    <label class="opcion">
+      <input type="radio" name="preferencia" value="Llamada telefónica">
+      <span class="opcion-tarjeta"><i class="fa-solid fa-phone"></i> Llamada</span>
+    </label>
+    <label class="opcion">
+      <input type="radio" name="preferencia" value="Correo electrónico">
+      <span class="opcion-tarjeta"><i class="fa-solid fa-envelope"></i> Correo</span>
+    </label>
+  </div>
+  <p class="mensaje-campo" id="msg-preferencia" role="alert"></p>
+</div>
+
+<!-- HORARIO PREFERIDO (3 opciones) -->
+<div class="campo">
+  <label for="horario">Horario preferido</label>
+  <div class="entrada entrada-select">
+    <select id="horario" name="horario" required>
+      <option value="">Elige un horario</option>
+      <option value="Mañana (9:00 – 12:00)">Mañana (9:00 – 12:00)</option>
+      <option value="Tarde (12:00 – 17:00)">Tarde (12:00 – 17:00)</option>
+      <option value="Noche (17:00 – 19:00)">Noche (17:00 – 20:00)</option>
+    </select>
+  </div>
+  <p class="mensaje-campo" id="msg-horario" role="alert"></p>
+</div>
+
           <div class="campo">
             <label for="mensaje">Cuéntanos tu caso</label>
             <textarea id="mensaje" name="mensaje" placeholder="Desde cuándo lo sientes, qué tomas hoy, si tienes algún tratamiento médico..." required></textarea>
@@ -119,28 +184,28 @@
           <h2>O contáctanos directo</h2>
           <ul class="lista-contacto">
             <li>
-              <strong>WhatsApp</strong>
+              <strong><i class="fa-brands fa-whatsapp"></i> WhatsApp</strong>
               <a href="https://wa.me/51919589549" target="_blank" rel="noopener">919 589 549</a><br>
               Lunes a sábado 9:00 – 20:00
             </li>
             <li>
-              <strong>Correo</strong>
+              <strong><i class="fa-solid fa-envelope"></i> Correo</strong>
               <!-- REEMPLAZAR: correo real -->
               <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a><br>
               Pedidos mayoristas y facturación
             </li>
             <li>
-              <strong>Local 1 — Cercado</strong>
+              <strong><i class="fa-solid fa-location-dot"></i> Local 1 — Cercado</strong>
              Av. Patricio Melendez 1290, Cercado de Tacna
             </li>
             <li>
-              <strong>Local 2 — Gregorio Albarracín</strong>
+              <strong><i class="fa-solid fa-location-dot"></i> Local 2 — Gregorio Albarracín</strong>
               Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna
             </li>
           </ul>
 
           <p>
-            <strong>¿Tienes una botica o tienda?</strong><br>
+            <strong><i class="fa-solid fa-store"></i> ¿Tienes una botica o tienda?</strong><br>
             Pide nuestra lista de precios mayorista con factura y despacho a todo el Perú.
             <a href="https://wa.me/51919589549?text=Hola,%20quiero%20la%20lista%20mayorista" target="_blank" rel="noopener">Solicitar lista mayorista</a>
           </p>
@@ -217,13 +282,13 @@
       loading="lazy"
       allowfullscreen>
     </iframe>
+       <a class="boton boton-verde boton-mapa"
+       href="https://www.google.com/maps/place/Farmacia+China/@-18.0012085,-70.2660173,15z/data=!3m1!4b1!4m6!3m5!1s0x915acf601aa0c3b3:0xc2d03d82bc2cabeb!8m2!3d-18.0012292!4d-70.255739!16s%2Fg%2F11x0gd92vx"
+       target="_blank"
+       rel="noopener">
+       Abrir ubicación en Google Maps
+    </a>
   </div>
-  <a class="boton"
-  href="https://www.google.com/maps/place/Farmacia+China/@-18.0012085,-70.2660173,15z/data=!3m1!4b1!4m6!3m5!1s0x915acf601aa0c3b3:0xc2d03d82bc2cabeb!8m2!3d-18.0012292!4d-70.255739!16s%2Fg%2F11x0gd92vx"
-  target="_blank"
-  rel="noopener">
-  Abrir ubicación en Google Maps
-</a>
 </section>
 
   </main>
@@ -240,30 +305,36 @@
           </a>
           <p>Productos naturales originales y asesoría real para toda la familia, desde 2024 en Tacna.</p>
         </div>
-        <div class="pie-columna">
+        <div class="pie-columna pie-contacto">
           <h3>Contacto</h3>
           <ul>
-            <li>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</li>
-            <li>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</li>
-            <li>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></li>
-            <li>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></li>
+            <!-- ÍCONOS: ubicación, WhatsApp y correo (Font Awesome) -->
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 1: Av. Patricio Melendez 1290, Cercado de Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span>Local 2: Asoc. San Francisco Mz 19 Lote 1- Distrito CGAL, Tacna</span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp: <a href="https://wa.me/51919589549">919 589 549</a></span></li>
+            <li class="dato"><span class="dato-icono" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><span>Correo: <a href="mailto:farmaciachinatacna@gmail.com">farmaciachinatacna@gmail.com</a></span></li>
           </ul>
         </div>
         <div class="pie-columna">
-          <h3>Secciones</h3>
+          <h3>Enlaces rápidos</h3>
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="productos.html">Productos</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html#destacados">Productos destacados</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#necesidades">¿Qué quieres mejorar?</a></li>
           </ul>
         </div>
         <div class="pie-columna">
           <h3>Síguenos</h3>
           <div class="redes">
-            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener">TikTok</a>
+            <!-- ÍCONOS: redes sociales -->
+            <a href="https://www.facebook.com/casanaturistachina/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/casanaturistachina/?hl=es-la/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@casanaturistachina?lang=es/" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
           </div>
         </div>
       </div>
@@ -277,7 +348,8 @@
       </div>
     </div>
   </footer>
-
+   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
+  <script src="js/modo-oscuro.js"></script>
 </body>
 
 </html>

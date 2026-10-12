@@ -1,0 +1,669 @@
+/* ============================================================
+   FORMULARIO DE CONTACTO — Casa Naturista China
+   Hecho a medida para la estructura de contacto.html
+   Variables usadas: --blanco, --radio, --gris-borde, --verde-oscuro,
+   --verde-medio, --fuente
+   ============================================================ */
+
+.contacto .contenedor {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* ---------- Tarjeta principal ---------- */
+.formulario {
+  flex: 1.2;
+  position: relative;
+  background-color: var(--blanco);
+  border-radius: calc(var(--radio) * 1.5);
+  padding: 2.5rem;
+  border: 1px solid var(--gris-borde);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.formulario::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--verde-oscuro), var(--verde-medio));
+}
+
+.formulario:focus-within {
+  border-color: var(--verde-medio);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.10);
+}
+
+.formulario h2 {
+  margin: 0.4rem 0 0.4rem;
+  color: var(--verde-oscuro);
+}
+
+.formulario > p {
+  margin-bottom: 1.8rem;
+  color: #5d6b66;
+}
+
+.etiqueta-seccion {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(76, 140, 100, 0.12);
+  color: var(--verde-oscuro);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.datos-contacto {
+  flex: 1;
+}
+
+/* ---------- Grupos (fieldset numerados) ---------- */
+.grupo {
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radio);
+  padding: 1.4rem 1.4rem 0.4rem;
+  margin: 0 0 1.5rem;
+  min-width: 0;
+  background: #fcfdfc;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.grupo:focus-within {
+  border-color: var(--verde-medio);
+  background: var(--blanco);
+}
+
+.grupo legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.6rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+
+.grupo legend i {
+  font-size: 0.9rem;
+  color: var(--verde-medio);
+}
+
+.grupo-numero {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
+  color: var(--blanco);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ---------- Campos ---------- */
+.campo {
+  margin-bottom: 1.2rem;
+}
+
+.campo > label,
+.etiqueta-grupo {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--verde-oscuro);
+  transition: color 0.25s ease;
+}
+
+.campo:focus-within > label,
+.campo:focus-within .etiqueta-grupo {
+  color: var(--verde-medio);
+}
+
+.opcional {
+  font-weight: 400;
+  color: #8a9692;
+  font-size: 0.82rem;
+}
+
+.fila-campos {
+  display: flex;
+  gap: 1rem;
+}
+
+.fila-campos .campo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Contenedor del input (icono + input + estado) ---------- */
+.entrada {
+  position: relative;
+}
+
+.icono-campo {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8a9692;
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.entrada:focus-within .icono-campo {
+  color: var(--verde-medio);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.entrada-area .icono-campo {
+  top: 1.1rem;
+  transform: none;
+}
+
+.entrada-area:focus-within .icono-campo {
+  transform: scale(1.15);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem 2.6rem 0.8rem 2.7rem;
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 12px;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  color: inherit;
+  background-color: #fafbfa;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+              background-color 0.25s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa3a0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--verde-medio);
+  background-color: var(--blanco);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--verde-medio);
+  background-color: var(--blanco);
+  box-shadow: 0 0 0 4px rgba(76, 140, 100, 0.18);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.4;
+  transform: translateX(6px);
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+  padding-top: 0.9rem;
+}
+
+/* Select: sin flecha nativa (usamos .flecha) */
+select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 4.2rem;
+}
+
+.flecha {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #8a9692;
+  pointer-events: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.entrada-select:focus-within .flecha {
+  transform: translateY(-50%) rotate(180deg);
+  color: var(--verde-medio);
+}
+
+/* ---------- Iconos de estado (✔ / !) ---------- */
+.estado {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.entrada-select .estado {
+  right: 2.5rem;
+}
+
+.entrada-area .estado {
+  top: 1.1rem;
+  transform: scale(0.5);
+}
+
+.estado-ok { color: #3c9d63; }
+.estado-error { color: #d64545; }
+
+/* Validación visual: el JS (formulario.js) agrega .valido / .invalido
+   al contenedor .entrada de cada campo */
+.entrada.valido .estado-ok,
+.entrada.invalido .estado-error {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.entrada-area.valido .estado-ok,
+.entrada-area.invalido .estado-error {
+  transform: scale(1);
+}
+
+.entrada.invalido input,
+.entrada.invalido select,
+.entrada.invalido textarea {
+  border-color: #d64545;
+  background-color: #fff6f6;
+}
+
+.entrada.invalido input:focus,
+.entrada.invalido select:focus,
+.entrada.invalido textarea:focus {
+  box-shadow: 0 0 0 4px rgba(214, 69, 69, 0.15);
+}
+
+.entrada.valido input,
+.entrada.valido select,
+.entrada.valido textarea {
+  border-color: #3c9d63;
+}
+
+/* Casilla de autorización con error */
+.campo-casilla.invalido {
+  background: #fff6f6;
+  outline: 1.5px solid #d64545;
+}
+
+/* Contador cerca del límite */
+.contador.limite {
+  color: #d64545;
+  font-weight: 600;
+}
+
+/* ---------- Mensajes de error y contador ---------- */
+.mensaje-campo {
+  margin: 0.35rem 0 0;
+  min-height: 0;
+  font-size: 0.82rem;
+  color: #d64545;
+}
+
+.mensaje-campo:empty {
+  display: none;
+}
+
+.pie-campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contador {
+  margin-top: 0.35rem;
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #8a9692;
+  white-space: nowrap;
+}
+
+/* ---------- Preferencia de contacto (tarjetas seleccionables) ---------- */
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.opcion {
+  flex: 1 1 110px;
+  cursor: pointer;
+}
+
+/* Radio real oculto, accesible por teclado */
+.opcion input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.opcion-tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 12px;
+  background-color: #fafbfa;
+  font-weight: 600;
+  font-size: 0.95rem;
+  user-select: none;
+  transition: border-color 0.25s ease, background 0.25s ease,
+              color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.opcion-tarjeta i {
+  font-size: 1.05rem;
+  color: var(--verde-medio);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.opcion:hover .opcion-tarjeta {
+  border-color: var(--verde-medio);
+  background-color: var(--blanco);
+  transform: translateY(-2px);
+}
+
+.opcion input:checked + .opcion-tarjeta {
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
+  border-color: transparent;
+  color: var(--blanco);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.opcion input:checked + .opcion-tarjeta i {
+  color: var(--blanco);
+  transform: scale(1.15);
+}
+
+.opcion input:focus-visible + .opcion-tarjeta {
+  box-shadow: 0 0 0 4px rgba(76, 140, 100, 0.28);
+}
+
+/* ---------- Casilla de autorización ---------- */
+.campo-casilla {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(76, 140, 100, 0.07);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.campo-casilla input {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  accent-color: var(--verde-oscuro);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.campo-casilla input:hover {
+  transform: scale(1.15);
+}
+
+.campo-casilla label {
+  flex: 1;
+  margin: 0;
+  font-weight: 400;
+  color: inherit;
+  cursor: pointer;
+}
+
+.campo-casilla .mensaje-campo {
+  flex-basis: 100%;
+}
+
+/* ---------- Botón de envío (3 estados) ---------- */
+.formulario .boton-enviar {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  color: var(--blanco);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              background-position 0.5s ease;
+}
+
+/* Solo se ve un estado a la vez */
+.boton-contenido {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.boton-cargando,
+.boton-listo {
+  display: none;
+}
+
+.boton-enviar.cargando .boton-normal,
+.boton-enviar.enviando .boton-normal,
+.boton-enviar.enviado .boton-normal,
+.boton-enviar.exito .boton-normal {
+  display: none;
+}
+
+.boton-enviar.cargando .boton-cargando,
+.boton-enviar.enviando .boton-cargando {
+  display: inline-flex;
+}
+
+.boton-enviar.enviado .boton-listo,
+.boton-enviar.exito .boton-listo {
+  display: inline-flex;
+}
+
+/* Icono de avión que despega al pasar el cursor */
+.boton-normal i {
+  transition: transform 0.3s ease;
+}
+
+.formulario .boton-enviar:hover {
+  background-position: 100% 50%;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.boton-enviar:hover .boton-normal i {
+  transform: translate(4px, -4px) rotate(8deg);
+}
+
+.formulario .boton-enviar:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.formulario .boton-enviar:focus-visible {
+  outline: 3px solid var(--verde-medio);
+  outline-offset: 3px;
+}
+
+.formulario .boton-enviar:disabled {
+  opacity: 0.75;
+  cursor: progress;
+  transform: none;
+}
+
+/* ---------- Aviso general y panel de éxito ---------- */
+.aviso-formulario {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #d64545;
+}
+
+.aviso-formulario:empty {
+  display: none;
+}
+
+.envio-exito {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--blanco);
+  animation: aparecer 0.45s ease both;
+}
+
+.envio-exito[hidden] {
+  display: none;
+}
+
+.envio-exito > i {
+  font-size: 3.5rem;
+  color: #3c9d63;
+  animation: rebote 0.6s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.envio-exito h3 {
+  margin: 0;
+  color: var(--verde-oscuro);
+  font-size: 1.5rem;
+}
+
+.envio-exito p {
+  max-width: 34ch;
+  margin: 0 0 0.6rem;
+  color: #5d6b66;
+}
+
+.boton-secundario {
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--verde-oscuro);
+  font-family: var(--fuente);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.boton-secundario:hover {
+  border-color: var(--verde-medio);
+  background: rgba(76, 140, 100, 0.08);
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rebote {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+/* ---------- Datos de contacto (columna derecha) ---------- */
+.lista-contacto li {
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--gris-borde);
+  border-left: 4px solid var(--verde-medio);
+  border-radius: 12px;
+  background-color: var(--blanco);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-left-color 0.25s ease;
+}
+
+.lista-contacto li:hover {
+  transform: translateX(6px);
+  border-left-color: var(--verde-oscuro);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+.lista-contacto strong {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--verde-oscuro);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .contacto .contenedor {
+    flex-direction: column;
+  }
+
+  .formulario,
+  .datos-contacto {
+    width: 100%;
+    flex: none;
+  }
+
+  .formulario {
+    padding: 1.75rem 1.2rem;
+  }
+
+  .grupo {
+    padding: 1.2rem 1rem 0.3rem;
+  }
+
+  .fila-campos {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .opcion {
+    flex-basis: 100%;
+  }
+}
+
+/* ---------- Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .formulario,
+  .formulario *,
+  .lista-contacto li,
+  .envio-exito,
+  .envio-exito > i {
+    transition: none !important;
+    animation: none !important;
+  }
+}
