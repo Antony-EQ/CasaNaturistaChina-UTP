@@ -1,0 +1,22 @@
+/* TURNO 7 — Mi lista y búsqueda rápida */
+.lista-acciones { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.lista-mensaje { min-height: 1.5em; margin: 0 0 1rem; font-weight: 600; }
+.lista-items { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.lista-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem 1rem; border: 1px solid rgba(128, 128, 128, .35); border-radius: 10px;
+}
+.boton-lista { margin: .25rem 0 .75rem; cursor: pointer; }
+.boton-lista.en-lista { opacity: .75; }
+.boton-eliminar { cursor: pointer; white-space: nowrap; }
+.resultado-busqueda { outline: 3px solid #2e7d32; outline-offset: 4px; border-radius: 12px; transition: outline-color .3s; }
+
+/* Botón de un producto agotado: gris y sin poder hacer clic */
+.boton-lista:disabled,
+.boton-lista:disabled:hover {
+  opacity: .55;
+  cursor: not-allowed;
+  background-color: transparent;
+  color: var(--gris-texto, #666);
+  border-color: var(--gris-borde, #ccc);
+}

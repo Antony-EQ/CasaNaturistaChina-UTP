@@ -13,6 +13,11 @@
   <!-- TURNO 11: estilos propios del blog y de la página 404 -->
   <link rel="stylesheet" href="css/blog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- TURNO 12: modo impresion profesional "catálogo A4" -->
+  <link rel="stylesheet" href="css/Impresion.css" media="print">
+  <link rel="stylesheet" href="css/interaccion.css">
+  <!-- Modo oscuro persistente: va en el <head> para aplicarse antes de pintar -->
+  <script src="js/tema.js"></script>
 </head>
 
 <body>
@@ -29,11 +34,10 @@
           <span>Casa Naturista<br>China</span>
         </a>
 
-        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
-             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
-        <nav>
+        <!-- Menú hamburguesa (solo se ve en celular): js/interaccion.js usa classList.toggle()
+             para abrir y cerrar el MISMO menú <nav> de abajo (no hay un segundo menú) -->
+        <button type="button" class="boton-hamburguesa" id="boton-menu" aria-label="Abrir o cerrar el menú" aria-expanded="false" aria-controls="menu-principal">&#9776;</button>
+        <nav id="menu-principal">
           <ul class="menu">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
             <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
@@ -42,10 +46,13 @@
             <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
-        <!-- Botón de modo oscuro -->
-        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
-          <i class="fa-solid fa-moon"></i>
-        </button>
+        <!-- Modo oscuro: checkbox + CSS; js/tema.js guarda la elección y la mantiene en todas las páginas. -->
+        <input type="checkbox" id="theme-toggle" class="theme-toggle" aria-label="Activar modo oscuro">
+        <label for="theme-toggle" class="boton-theme" title="Cambiar modo claro/oscuro">
+          <i class="fa-solid fa-moon icono-luna" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icono-sol" aria-hidden="true"></i>
+          <span class="sr-only">Cambiar modo claro/oscuro</span>
+        </label>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
@@ -59,7 +66,7 @@
        - Artículos con imagen y categoría.
        - Grid de 3 columnas (2 en tablet, 1 en celular).
        - Tarjetas con animación de entrada y efecto hover.
-       - Filtro por categoría con js/blog.js.
+       - Filtro por categoría hecho solo con CSS (botones radio + :has en css/blog.css).
        ================================================================== -->
   <main>
 
@@ -85,11 +92,16 @@
 
         <!-- CATEGORÍAS: cada botón filtra las tarjetas por su data-categoria -->
         <div class="blog-filtros" role="group" aria-label="Filtrar artículos por categoría">
-          <button type="button" class="blog-filtro activo" data-filtro="todos" aria-pressed="true">Todos</button>
-          <button type="button" class="blog-filtro" data-filtro="digestion" aria-pressed="false">Digestión</button>
-          <button type="button" class="blog-filtro" data-filtro="energia" aria-pressed="false">Energía</button>
-          <button type="button" class="blog-filtro" data-filtro="defensas" aria-pressed="false">Defensas</button>
-          <button type="button" class="blog-filtro" data-filtro="descanso" aria-pressed="false">Descanso</button>
+          <input class="blog-filtro-radio" type="radio" name="filtro-blog" id="filtro-todos" checked>
+          <label class="blog-filtro" for="filtro-todos">Todos</label>
+          <input class="blog-filtro-radio" type="radio" name="filtro-blog" id="filtro-digestion">
+          <label class="blog-filtro" for="filtro-digestion">Digestión</label>
+          <input class="blog-filtro-radio" type="radio" name="filtro-blog" id="filtro-energia">
+          <label class="blog-filtro" for="filtro-energia">Energía</label>
+          <input class="blog-filtro-radio" type="radio" name="filtro-blog" id="filtro-defensas">
+          <label class="blog-filtro" for="filtro-defensas">Defensas</label>
+          <input class="blog-filtro-radio" type="radio" name="filtro-blog" id="filtro-descanso">
+          <label class="blog-filtro" for="filtro-descanso">Descanso</label>
         </div>
 
         <!-- GRID de artículos -->
@@ -261,9 +273,6 @@
 
         </div>
 
-        <!-- Solo se muestra si el filtro no encuentra artículos -->
-        <p class="blog-vacio" id="blog-vacio" hidden>Todavía no hay artículos en esta categoría.</p>
-
         <p class="blog-aviso">
           <strong>Importante:</strong> estos consejos son informativos y no reemplazan la consulta médica.
           En embarazo, lactancia o tratamiento médico, consúltanos antes de empezar cualquier producto.
@@ -339,10 +348,10 @@
       </div>
     </div>
   </footer>
-   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
-  <script src="js/modo-oscuro.js"></script>
   <!-- TURNO 11: filtro por categoría y animación al hacer scroll -->
-  <script src="js/blog.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/principal.js"></script>
+<script src="js/interaccion.js"></script>
 </body>
 
 </html>

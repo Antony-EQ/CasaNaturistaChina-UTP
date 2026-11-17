@@ -151,6 +151,34 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.selector-necesidad-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--verde-oscuro);
+  font-weight: 600;
+}
+
+.selector-necesidad {
+  display: block;
+  width: min(100%, 440px);
+  margin-bottom: 1rem;
+}
+
+.mensaje-necesidad {
+  min-height: 1.6em;
+  margin-bottom: 2rem;
+  color: var(--verde-oscuro);
+  font-weight: 600;
+}
+
+.enlace-categoria {
+  margin: -1rem 0 2rem;
+}
+
+.enlace-categoria[hidden] {
+  display: none;
+}
+
 
 /* ------------------------------------------------------------
    4. BOTONES
@@ -776,6 +804,42 @@ body > header {
 .no-disponible { color: var(--naranja);     font-weight: 600; }
 
 
+
+/* TURNO 5: cada nivel de stock tiene texto, color y fondo propios. */
+
+.estado-stock.disponible {
+  color: #18794e;
+  background-color: #e8f6ee;
+}
+
+.estado-stock.ultimas-unidades {
+  color: #9a5700;
+  background-color: #fff3d6;
+}
+
+.estado-stock.agotado {
+  color: #b42318;
+  background-color: #fde9e7;
+}
+
+/* El borde acompaña el aviso para que el agotado se note en toda la tarjeta. */
+.producto.producto-agotado { 
+  border-color: #b42318; }
+.producto.producto-ultimas-unidades { 
+  border-color: #d69220; }
+
+/* El fondo redondeado hace que el estado se distinga dentro de la tarjeta. */
+.estado-stock.disponible,
+.estado-stock.ultimas-unidades,
+.estado-stock.agotado {
+  display: inline-block;
+  align-self: flex-start;
+  padding: .3rem .55rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+
 /* ------------------------------------------------------------
    10. FORMULARIO DE CONTACTO
    ------------------------------------------------------------ */
@@ -918,7 +982,8 @@ input:user-invalid,
 select:user-invalid,
 textarea:user-invalid {
   border-color: #d64545;
-  background-color: #fff6f6;
+  /* Variable de formulario.css: rosado en modo claro, rojo oscuro en modo oscuro */
+  background-color: var(--form-error-fondo, #fff6f6);
 }
  
 input:user-invalid:focus,
@@ -1080,7 +1145,7 @@ textarea:user-valid {
   padding: 0.7rem 1rem;
   border: 1.5px solid var(--gris-borde);
   border-radius: 12px;
-  background-color: #fafbfa;
+  background-color: var(--form-campo, #fafbfa);   /* variable de formulario.css (cambia en modo oscuro) */
   font-weight: 600;
   font-size: 0.95rem;
   text-align: center;
@@ -1448,6 +1513,7 @@ textarea:user-valid {
     /* ---------- FORMULARIO ---------- */
 
     .contacto .contenedor {
+
         flex-direction: column;
     }
 
@@ -1644,6 +1710,9 @@ textarea:user-valid {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+
+    
 }
 
 
@@ -1925,33 +1994,6 @@ textarea:user-valid {
   margin: 0.1rem 0 0.9rem;
 }
 
-/* Botones siguiente / anterior (íconos Font Awesome del Turno 6) */
-.carrusel-boton {
-  position: absolute;
-  top: 33%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 46px;
-  height: 46px;
-  border: 2px solid var(--blanco);
-  border-radius: 50%;
-  background-color: var(--verde-oscuro);
-  color: var(--blanco);
-  font-size: 1.1rem;
-  cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  transition: background-color .25s ease, transform .25s ease;
-}
-
-.carrusel-boton:hover,
-.carrusel-boton:focus-visible {
-  background-color: var(--naranja);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carrusel-anterior { left: -12px; }
-.carrusel-siguiente { right: -12px; }
-
 /* Tablet (hasta 820 px): 2 tarjetas */
 @media (max-width: 820px) {
   .carrusel-item {
@@ -1964,14 +2006,53 @@ textarea:user-valid {
   .carrusel-item {
     flex-basis: 82%;
   }
+}
 
-  .carrusel-anterior { left: -6px; }
-  .carrusel-siguiente { right: -6px; }
+/* Botones ‹ › de la vitrina (los mueve js/principal.js) */
+.carrusel-boton {
+  position: absolute;
+  top: 33%;                     /* a la altura de las fotos */
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--blanco);
+  border-radius: 50%;
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color .25s ease, transform .25s ease, opacity .25s ease;
+}
 
-  .carrusel-boton {
-    width: 40px;
-    height: 40px;
-  }
+.carrusel-boton:hover,
+.carrusel-boton:focus-visible {
+  background-color: var(--naranja);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carrusel-boton:focus-visible {
+  outline: 3px solid var(--naranja);
+  outline-offset: 2px;
+}
+
+/* Cuando ya estoy al inicio o al final, el botón de ese lado se apaga */
+.carrusel-boton:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carrusel-anterior { left: -12px; }
+.carrusel-siguiente { right: -12px; }
+
+/* Celular: oculto los botones porque ahí la vitrina se desliza con el dedo.
+   Uso dos condiciones (la coma significa "o"):
+   - max-width: 480px → pantalla de celular.
+   - hover: none y pointer: coarse → pantalla táctil (celulares y tablets),
+     aunque el ancho sea mayor. */
+@media (max-width: 480px), (hover: none) and (pointer: coarse) {
+  .carrusel-boton { display: none; }
 }
 
 /* Accesibilidad: sin movimiento para quien lo tiene desactivado en su sistema */
@@ -2001,11 +2082,45 @@ textarea:user-valid {
 /* ==========================================================
    este es el css de mi truno 13 aque esto todo lo que ise 
    ========================================================== */
+/* Colores de la sección en variables, así el modo oscuro solo
+   cambia los valores (abajo) y el modo claro queda igual que antes. */
+.faq-section {
+    --faq-titulo:          #0b4c2c;
+    --faq-intro:           #666666;
+    --faq-tarjeta:         #ffffff;
+    --faq-borde:           #ebebeb;
+    --faq-pregunta:        #111111;
+    --faq-respuesta:       #555555;
+    --faq-circulo:         #f5f5f5;
+    --faq-flecha:          #333333;
+    --faq-abierta-fondo:   #e6f0e6;
+    --faq-abierta-borde:   #d2ded2;
+    --faq-circulo-abierto: #a3cca3;
+    --faq-flecha-abierta:  #111111;
+}
+
+/* Modo oscuro (tema.js pone data-theme="dark"; el checkbox también lo activa) */
+[data-theme="dark"] .faq-section,
+body:has(.theme-toggle:checked) .faq-section {
+    --faq-titulo:          #21b05d;
+    --faq-intro:           #bdbdbd;
+    --faq-tarjeta:         #1e1e1e;
+    --faq-borde:           #383838;
+    --faq-pregunta:        #f0f0f0;
+    --faq-respuesta:       #cfcfcf;
+    --faq-circulo:         #2c2c2c;
+    --faq-flecha:          #e0e0e0;
+    --faq-abierta-fondo:   #1e2f23;
+    --faq-abierta-borde:   #2f4a36;
+    --faq-circulo-abierto: #27ae60;
+    --faq-flecha-abierta:  #ffffff;
+}
+
 .faq-heading {
     text-align: center;
     max-width: 600px;
     margin: 40px auto 20px auto;
-    font-family: 'Arial', sans-serif;
+    /* Sin font-family: usa Poppins, igual que el resto del sitio */
 }
 
 /* Líneas decorativas al lado de "Resolvemos tus dudas" */
@@ -2031,14 +2146,13 @@ textarea:user-valid {
 
 .faq-heading h2 {
     font-size: 42px;
-    color: #0b4c2c; /* Verde oscuro institucional */
+    color: var(--faq-titulo); /* Verde oscuro institucional */
     margin: 10px 0;
-    font-family: 'Georgia', serif; /* Tipografía elegante para el título */
 }
 
 .faq-heading p {
     font-size: 15px;
-    color: #666;
+    color: var(--faq-intro);
     line-height: 1.4;
 }
 
@@ -2046,13 +2160,12 @@ textarea:user-valid {
 .faq-container {
     max-width: 640px;
     margin: 0 auto 50px auto;
-    font-family: 'Arial', sans-serif;
 }
 
 /* Estilo base de cada item (Estado Cerrado) */
 .faq-item {
-    background-color: #ffffff;
-    border: 1px solid #ebebeb;
+    background-color: var(--faq-tarjeta);
+    border: 1px solid var(--faq-borde);
     border-radius: 10px;        /* Bordes redondeados idénticos al diseño */
     margin-bottom: 14px;        /* Separación de cada pregunta */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.03); /* Sombra suave inferior */
@@ -2064,7 +2177,7 @@ textarea:user-valid {
     padding: 18px 20px;
     font-size: 16px;
     font-weight: 700;
-    color: #111111;
+    color: var(--faq-pregunta);
     cursor: pointer;
     list-style: none; /* Elimina la flecha del sistema */
     display: flex;
@@ -2083,44 +2196,48 @@ textarea:user-valid {
     justify-content: center;
     width: 28px;
     height: 28px;
-    background-color: #f5f5f5; /* Círculo gris suave */
+    background-color: var(--faq-circulo); /* Círculo gris suave */
     border-radius: 50%;
     margin-right: 15px;
     transition: all 0.3s ease;
 }
 
-/* Flecha hacia la derecha dentro del círculo cerrado */
-.faq-icon::before {
-    content: "〉";
-    font-size: 11px;
-    font-weight: bold;
-    color: #333;
+/* Flecha de Font Awesome (fa-chevron-right) dentro del círculo */
+.faq-icon i {
+    font-size: 12px;
+    color: var(--faq-flecha);
+    transition: transform 0.3s ease;   /* gira suave al abrir/cerrar */
 }
 
 /* Contenedor del texto de la respuesta */
 .faq-answer {
     padding: 0 20px 20px 63px; /* Alineado correctamente debajo del texto de la pregunta */
     font-size: 14px;
-    color: #555555;
+    color: var(--faq-respuesta);
     line-height: 1.5;
+}
+
+/* Enlace dentro de una respuesta (ej. "Ver fotos y mapa") */
+.faq-answer a {
+    color: var(--faq-titulo);
+    font-weight: 600;
 }
 
 /* Fondo de la caja en verde claro y borde sutil */
 .faq-item[open] {
-    background-color: #e6f0e6; /* Tono exacto verde claro de fondo */
-    border-color: #d2ded2;
+    background-color: var(--faq-abierta-fondo); /* Tono exacto verde claro de fondo */
+    border-color: var(--faq-abierta-borde);
 }
 
 /* El círculo cambia a verde más encendido */
 .faq-item[open] .faq-icon {
-    background-color: #a3cca3; /* Verde del círculo del diseño */
+    background-color: var(--faq-circulo-abierto); /* Verde del círculo del diseño */
 }
 
-/* Cambia la flecha por el ángulo hacia abajo */
-.faq-item[open] .faq-icon::before {
-    content: "∨";
-    font-size: 13px;
-    color: #111;
+/* Abierta: la misma flecha gira 90° y apunta hacia abajo */
+.faq-item[open] .faq-icon i {
+    transform: rotate(90deg);
+    color: var(--faq-flecha-abierta);
 }
 
 
@@ -2177,4 +2294,155 @@ textarea:user-valid {
     flex-direction: column;
     gap: 0.3rem;
   }
+}
+
+
+/* ============================================================
+   VERSIÓN SIN JAVASCRIPT
+   ============================================================ */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.theme-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.boton-theme {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px; border: 1px solid var(--verde-oscuro);
+  color: var(--verde-oscuro); border-radius: 50%; cursor: pointer; flex-shrink: 0;
+}
+.boton-theme .icono-sol { display: none; }
+.theme-toggle:focus-visible + .boton-theme { outline: 3px solid var(--naranja); outline-offset: 2px; }
+body:has(.theme-toggle:checked) {
+  --verde-oscuro: #21b05d;
+  --verde-medio: #27ae60;
+  --verde-claro: #1e2f23;
+  --crema: #121212;
+  --blanco: #1e1e1e;
+  --gris-texto: #e0e0e0;
+  --gris-borde: #383838;
+}
+body:has(.theme-toggle:checked) .boton-theme .icono-luna { display: none; }
+body:has(.theme-toggle:checked) .boton-theme .icono-sol { display: inline-block; }
+
+/* Animación al entrar en pantalla sin JS, en navegadores compatibles con View Timelines. */
+@supports (animation-timeline: view()) {
+  .animacion-tarjeta {
+    animation: turno4Entrada 0.75s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+}
+
+.nota-sin-js { margin-top: 1rem; font-size: .88rem; opacity: .8; text-align: center; }
+.boton-whatsapp-form { display: block; margin-top: .8rem; text-align: center; }
+
+/* ------------------------------------------------------------
+   TURNO 2 — Botón "Ver información" y caja de información extra
+   ------------------------------------------------------------ */
+
+/* .boton se pensó para enlaces <a>; a un <button> le falta la letra
+   y el cursor de mano, por eso los agregamos aquí. */
+.boton-info {
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.8rem;
+  align-self: flex-start;   /* no se estira a todo el ancho */
+}
+
+.boton-info:hover {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+/* Caja donde JavaScript escribe la información del producto */
+.info-extra {
+  background-color: var(--verde-claro);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  margin: 0 0 0.8rem;
+}
+
+/* Clase que JavaScript pone y quita con classList.toggle("oculto").
+   Mientras la caja tenga esta clase, no se ve. */
+.oculto {
+  display: none;
+}
+
+/* Tabla comparativa: el estado de cada local en una sola línea
+   (en celular la tabla igual se puede deslizar de lado). */
+.tabla .estado-stock {
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   Sello "100% productos originales" (productos.html, vitrina)
+   Antes estaba con position: absolute medido desde la página
+   (top: 170px), por eso en celular quedaba encima del título.
+   Ahora lo mido desde el contenedor de la sección.
+   ------------------------------------------------------------ */
+#carrusel .contenedor {
+  position: relative;
+}
+
+.pro {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  width: 180px;
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.pro:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+/* Tablet y celular: no hay espacio al costado del título,
+   así que el sello pasa a su propia fila, más pequeño. */
+@media (max-width: 900px) {
+  .pro {
+    position: static;
+    display: block;
+    width: 180px;
+    margin: 0 auto 1rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   MODO OSCURO — ajustes generales
+   ------------------------------------------------------------ */
+
+/* Le aviso al navegador que la página está oscura: así los selects,
+   la casilla y las barras de scroll también se dibujan oscuros. */
+[data-theme="dark"],
+body:has(.theme-toggle:checked) {
+  color-scheme: dark;
+}
+
+/* Pie de página y barra de arriba: en oscuro, --verde-oscuro es un verde
+   muy brillante y el texto amarillo/oscuro casi no se leía. Uso un verde
+   bosque oscuro con texto claro. */
+[data-theme="dark"] .pie,
+body:has(.theme-toggle:checked) .pie,
+[data-theme="dark"] .barra-superior,
+body:has(.theme-toggle:checked) .barra-superior {
+  background-color: #12291a;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .pie a,
+body:has(.theme-toggle:checked) .pie a,
+[data-theme="dark"] .pie .logo,
+body:has(.theme-toggle:checked) .pie .logo {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .pie li a:hover,
+body:has(.theme-toggle:checked) .pie li a:hover {
+  color: var(--amarillo);
 }

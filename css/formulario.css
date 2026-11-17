@@ -1,3 +1,29 @@
+/* ----------------------------------------------------------
+   Colores del formulario en variables. En modo claro tienen los
+   mismos valores de antes; en modo oscuro cambian (ver abajo).
+   ---------------------------------------------------------- */
+:root {
+  --form-grupo:        #fcfdfc;   /* fondo de cada grupo de campos */
+  --form-campo:        #fafbfa;   /* fondo de inputs, selects y textarea */
+  --form-texto:        #333333;   /* texto de las tarjetas WhatsApp / Llamada / Correo */
+  --form-placeholder:  #9aa3a0;   /* texto de ejemplo dentro de los campos */
+  --form-texto-suave:  #5d6b66;
+  --form-texto-tenue:  #8a9692;   /* contador, notas pequeñas */
+  --form-error-fondo:  #fff6f6;   /* fondo rosado de un campo con error */
+}
+
+/* Modo oscuro (tema.js pone data-theme="dark"; el checkbox también lo activa) */
+[data-theme="dark"],
+body:has(.theme-toggle:checked) {
+  --form-grupo:        #1a1a1a;
+  --form-campo:        #262626;
+  --form-texto:        #e0e0e0;
+  --form-placeholder:  #8c8c8c;
+  --form-texto-suave:  #b5b5b5;
+  --form-texto-tenue:  #a0a0a0;
+  --form-error-fondo:  #3a1f1f;
+}
+
 /* ============================================================
    FORMULARIO DE CONTACTO — Casa Naturista China
    Hecho a medida para la estructura de contacto.html
@@ -44,7 +70,7 @@
 
 .formulario > p {
   margin-bottom: 1.8rem;
-  color: #5d6b66;
+  color: var(--form-texto-suave);
 }
 
 .etiqueta-seccion {
@@ -70,7 +96,7 @@
   padding: 1.4rem 1.4rem 0.4rem;
   margin: 0 0 1.5rem;
   min-width: 0;
-  background: #fcfdfc;
+  background: var(--form-grupo);
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -127,7 +153,7 @@
 
 .opcional {
   font-weight: 400;
-  color: #8a9692;
+  color: var(--form-texto-tenue);
   font-size: 0.82rem;
 }
 
@@ -151,7 +177,7 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #8a9692;
+  color: var(--form-texto-tenue);
   font-size: 0.95rem;
   pointer-events: none;
   transition: color 0.25s ease, transform 0.25s ease;
@@ -183,14 +209,14 @@ textarea {
   font-family: var(--fuente);
   font-size: 1rem;
   color: inherit;
-  background-color: #fafbfa;
+  background-color: var(--form-campo);
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
               background-color 0.25s ease;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #9aa3a0;
+  color: var(--form-placeholder);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -235,7 +261,7 @@ select {
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.75rem;
-  color: #8a9692;
+  color: var(--form-texto-tenue);
   pointer-events: none;
   transition: transform 0.25s ease, color 0.25s ease;
 }
@@ -268,8 +294,9 @@ select {
 .estado-ok { color: #3c9d63; }
 .estado-error { color: #d64545; }
 
-/* Validación visual: el JS (formulario.js) agrega .valido / .invalido
-   al contenedor .entrada de cada campo */
+/* Validación visual: estas clases las ponía js/formulario.js, que ya se borró.
+   Hoy la validación de contacto.html la hace el navegador (required, pattern)
+   y el saludo del Turno 4 está en principal.js. */
 .entrada.valido .estado-ok,
 .entrada.invalido .estado-error {
   opacity: 1;
@@ -285,7 +312,7 @@ select {
 .entrada.invalido select,
 .entrada.invalido textarea {
   border-color: #d64545;
-  background-color: #fff6f6;
+  background-color: var(--form-error-fondo);
 }
 
 .entrada.invalido input:focus,
@@ -302,7 +329,7 @@ select {
 
 /* Casilla de autorización con error */
 .campo-casilla.invalido {
-  background: #fff6f6;
+  background: var(--form-error-fondo);
   outline: 1.5px solid #d64545;
 }
 
@@ -335,7 +362,7 @@ select {
   margin-top: 0.35rem;
   margin-left: auto;
   font-size: 0.8rem;
-  color: #8a9692;
+  color: var(--form-texto-tenue);
   white-space: nowrap;
 }
 
@@ -349,6 +376,20 @@ select {
 .opcion {
   flex: 1 1 110px;
   cursor: pointer;
+}
+
+/* En estilos.css hay una regla vieja (.opciones label) que le pone borde,
+   relleno y fondo a la etiqueta. Como el recuadro lo dibuja .opcion-tarjeta,
+   aquí la etiqueta de afuera queda "invisible" para que no salga doble. */
+.opciones .opcion,
+.opciones .opcion:hover {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  min-width: 0;
+  display: block;          /* así la tarjeta de adentro ocupa todo el ancho */
 }
 
 /* Radio real oculto, accesible por teclado */
@@ -368,7 +409,7 @@ select {
   padding: 0.75rem 1rem;
   border: 1.5px solid var(--gris-borde);
   border-radius: 12px;
-  background-color: #fafbfa;
+  background-color: var(--form-campo);
   font-weight: 600;
   font-size: 0.95rem;
   user-select: none;
@@ -376,34 +417,51 @@ select {
               color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 
+
+/* Íconos de las opciones */
 .opcion-tarjeta i {
-  font-size: 1.05rem;
-  color: var(--verde-medio);
-  transition: color 0.25s ease, transform 0.25s ease;
+    font-size: 1.05rem;
+    color: var(--verde-medio);
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
+/* Cuando pasas el mouse */
 .opcion:hover .opcion-tarjeta {
-  border-color: var(--verde-medio);
-  background-color: var(--blanco);
-  transform: translateY(-2px);
+    border-color: var(--verde-medio);
+    transform: translateY(-2px);
 }
 
+/* Opciones no seleccionadas */
+.opcion-tarjeta {
+    background-color: var(--form-campo);
+    color: var(--form-texto);
+    border: 1.5px solid var(--gris-borde);
+    transition: all 0.3s ease;
+}
+
+/* Opción seleccionada */
 .opcion input:checked + .opcion-tarjeta {
-  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
-  border-color: transparent;
-  color: var(--blanco);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  transform: translateY(-2px);
+    background-color: #1E5A2C;
+    background-image: none;
+    border: 1.5px solid #1E5A2C;
+    color: #FFFFFF;
+    box-shadow: none;
+    outline: none;
+    transform: translateY(-2px);
 }
 
+/* Ícono de la opción seleccionada */
 .opcion input:checked + .opcion-tarjeta i {
-  color: var(--blanco);
-  transform: scale(1.15);
+    color: #FFFFFF;
+    transform: scale(1.15);
 }
 
+/* Indicador de foco solo para navegación con teclado */
 .opcion input:focus-visible + .opcion-tarjeta {
-  box-shadow: 0 0 0 4px rgba(76, 140, 100, 0.28);
+    outline: 2px solid #F28C28;
+    outline-offset: 3px;
 }
+
 
 /* ---------- Casilla de autorización ---------- */
 .campo-casilla {
@@ -572,7 +630,7 @@ select {
 .envio-exito p {
   max-width: 34ch;
   margin: 0 0 0.6rem;
-  color: #5d6b66;
+  color: var(--form-texto-suave);
 }
 
 .boton-secundario {
@@ -654,6 +712,22 @@ select {
   .opcion {
     flex-basis: 100%;
   }
+      /* Asesoría gratuita */
+    .formulario > .etiqueta-seccion {
+        display: table;
+        margin: 0 auto 10px;
+        text-align: center;
+    }
+
+    /* Cuéntanos tu caso */
+    .formulario > h2 {
+        text-align: center;
+    }
+
+    /* Texto descriptivo */
+    .formulario > p {
+        text-align: center;
+    }
 }
 
 /* ---------- Accesibilidad: menos movimiento ---------- */
@@ -666,4 +740,22 @@ select {
     transition: none !important;
     animation: none !important;
   }
+}
+/* ============================================================
+   TURNO 4 — ESTILO DEL SALUDO PERSONALIZADO
+   ============================================================ */
+
+#saludo-personalizado {
+    margin-top: 0.8rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background-color: rgba(76, 140, 100, 0.12);
+    color: var(--verde-oscuro);
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+#saludo-personalizado:empty {
+    display: none;
 }

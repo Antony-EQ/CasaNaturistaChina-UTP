@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 5 140 110" role="img" aria-label="Logo de tres hojas verdes">
+  <path d="M120 85 C82 76 60 47 65 22 C94 24 117 49 120 85Z" fill="#4F914D"/>
+  <path d="M120 85 C120 43 145 13 174 16 C174 49 153 75 120 85Z" fill="#2F713B"/>
+  <path d="M120 85 C104 59 105 39 120 26 C136 47 136 68 120 85Z" fill="#80B76A"/>
+  <path d="M120 87 L81 40 M120 87 L157 35 M120 87 L120 106" stroke="#E5F1D9" stroke-width="2.5" fill="none"/>
+</svg>

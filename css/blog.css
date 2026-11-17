@@ -57,8 +57,8 @@
 
 /* ------------------------------------------------------------
    2. FILTROS POR CATEGORÍA
-   Cada botón tiene data-filtro; js/blog.js muestra solo las
-   tarjetas cuyo data-categoria coincide.
+   Cada botón es un radio. Con :has() (al final de este archivo) muestro
+   solo las tarjetas cuyo data-categoria coincide. No usa JavaScript.
    ------------------------------------------------------------ */
 .blog-filtros {
   display: flex;
@@ -345,18 +345,6 @@
   50%      { transform: translateY(-70%) rotate(8deg); }
 }
 
-/* js/blog.js pone .blog-oculta a las tarjetas que aún no se ven y la
-   cambia por .blog-visible cuando entran en pantalla al hacer scroll */
-.blog-oculta {
-  opacity: 0;
-}
-
-/* "backwards" solo aplica el estado inicial durante el retraso: al terminar,
-   la tarjeta queda libre para el efecto hover */
-.blog-visible {
-  animation: blogAparecer 0.6s ease backwards;
-}
-
 .blog-cabecera h1,
 .blog-cabecera p,
 .blog-cabecera .etiqueta-seccion {
@@ -568,7 +556,6 @@
 @media (prefers-reduced-motion: reduce) {
 
   .blog-hoja,
-  .blog-visible,
   .blog-contenido,
   .blog-cabecera h1,
   .blog-cabecera p,
@@ -582,14 +569,24 @@
     animation: none;
   }
 
-  .blog-oculta {
-    opacity: 1;
-  }
-
   .blog-tarjeta,
   .blog-imagen img,
   .blog-filtro,
   .error-botones .boton {
     transition: none;
   }
+}
+
+
+/* FILTROS DEL BLOG SIN JAVASCRIPT: radios + :has() */
+.blog-filtro-radio {
+  position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none;
+}
+.blog-filtro-radio:focus-visible + .blog-filtro { outline: 3px solid var(--naranja); outline-offset: 2px; }
+.blog-filtro-radio:checked + .blog-filtro { background-color: var(--verde-oscuro); color: var(--blanco); }
+.blog-filtros:has(#filtro-digestion:checked) + .blog-grid .blog-tarjeta:not([data-categoria="digestion"]),
+.blog-filtros:has(#filtro-energia:checked) + .blog-grid .blog-tarjeta:not([data-categoria="energia"]),
+.blog-filtros:has(#filtro-defensas:checked) + .blog-grid .blog-tarjeta:not([data-categoria="defensas"]),
+.blog-filtros:has(#filtro-descanso:checked) + .blog-grid .blog-tarjeta:not([data-categoria="descanso"]) {
+  display: none;
 }

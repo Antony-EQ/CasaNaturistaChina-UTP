@@ -1,0 +1,93 @@
+
+
+/* ---------- 1. MENÚ HAMBURGUESA ---------- */
+.boton-hamburguesa {
+  background: transparent;      
+  font-family: inherit;
+}
+
+@media (max-width: 1150px) {
+ 
+  .encabezado.menu-abierto nav,
+  .encabezado.menu-abierto .boton-whatsapp {
+    display: block;
+    flex: 1 1 100%;
+  }
+  .encabezado.menu-abierto .boton-whatsapp { text-align: center; }
+
+  
+  .encabezado.menu-abierto .boton-hamburguesa {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+  }
+  .boton-hamburguesa:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 2px;
+  }
+
+  /* En celular pongo el botón de modo oscuro ANTES del ☰,
+     así el ☰ queda pegado a la derecha.
+     Uso "order" de flexbox para no mover el HTML (en escritorio sigue igual).
+     El menú y WhatsApp van al final para que, al abrirse, salgan abajo. */
+  .boton-theme {
+    order: 1;
+    margin-left: auto;   /* empuja la luna y el ☰ a la derecha */
+  }
+  .boton-hamburguesa { order: 2; }
+  .encabezado nav,
+  .encabezado .boton-whatsapp { order: 3; }
+}
+
+/* ---------- 2. IMÁGENES AMPLIABLES ---------- */
+.img-ampliable { cursor: zoom-in; }
+.img-ampliable:focus-visible { outline: 3px solid var(--naranja); outline-offset: -3px; }
+
+body.visor-abierto { overflow: hidden; }
+
+.visor-imagen {
+  position: fixed; inset: 0; z-index: 3000;      /* por encima del modal de producto (2000) */
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, .88);
+  cursor: zoom-out;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.visor-imagen.activo { opacity: 1; visibility: visible; }
+
+.visor-imagen img {
+  width: auto; height: auto;
+  max-width: min(94vw, 900px); max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+  transform: scale(.85);
+  transition: transform .3s ease;
+}
+.visor-imagen.activo img { transform: scale(1); }  
+
+.visor-cerrar {
+  position: absolute; top: .8rem; right: .8rem;
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .9); color: #1e5a2c;
+  font-size: 1.8rem; line-height: 1; cursor: pointer;
+}
+.visor-cerrar:focus-visible { outline: 3px solid var(--naranja); outline-offset: 2px; }
+
+/* ---------- 3. VIDEO: ---------- */
+.video {
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+}
+.video.video-activo {
+  transform: scale(1.03);
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 4px rgba(242, 140, 40, .35), 0 12px 32px rgba(0, 0, 0, .3);
+  filter: saturate(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visor-imagen, .visor-imagen img, .video { transition: none; }
+  .video.video-activo { transform: none; }
+}
+@media print { .visor-imagen { display: none !important; } }

@@ -7,16 +7,6 @@
   <meta name="robots" content="noindex">
   <title>Página no encontrada | Casa Naturista China</title>
 
-  <!-- TURNO 11: GitHub Pages muestra este archivo para cualquier dirección que no exista,
-       incluso dentro de subcarpetas (ej. /CasaNaturistaChina-UTP/algo/otro), donde las rutas
-       relativas como "css/estilos.css" dejarían de funcionar. Por eso se indica la carpeta
-       del repositorio como base de todas las rutas. En local no hace falta. -->
-  <script>
-    if (location.hostname.endsWith('github.io')) {
-      document.write('<base href="/' + location.pathname.split('/')[1] + '/">');
-    }
-  </script>
-
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,6 +14,12 @@
   <!-- TURNO 11: estilos propios del blog y de la página 404 -->
   <link rel="stylesheet" href="css/blog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- TURNO 12: modo impresion profesional "catálogo A4" -->
+  <link rel="stylesheet" href="css/Impresion.css" media="print">
+  <link rel="stylesheet" href="css/interaccion.css">
+  <!-- Modo oscuro persistente: va en el <head> para aplicarse antes de pintar -->
+  <script src="js/tema.js"></script>
 </head>
 
 <body>
@@ -40,11 +36,10 @@
           <span>Casa Naturista<br>China</span>
         </a>
 
-        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
-             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
-        <nav>
+        <!-- Menú hamburguesa (solo se ve en celular): js/interaccion.js usa classList.toggle()
+             para abrir y cerrar el MISMO menú <nav> de abajo (no hay un segundo menú) -->
+        <button type="button" class="boton-hamburguesa" id="boton-menu" aria-label="Abrir o cerrar el menú" aria-expanded="false" aria-controls="menu-principal">&#9776;</button>
+        <nav id="menu-principal">
           <ul class="menu">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
             <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
@@ -53,10 +48,13 @@
             <li><a href="contacto.html"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
-        <!-- Botón de modo oscuro -->
-        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
-          <i class="fa-solid fa-moon"></i>
-        </button>
+        <!-- Modo oscuro: checkbox + CSS; js/tema.js guarda la elección y la mantiene en todas las páginas. -->
+        <input type="checkbox" id="theme-toggle" class="theme-toggle" aria-label="Activar modo oscuro">
+        <label for="theme-toggle" class="boton-theme" title="Cambiar modo claro/oscuro">
+          <i class="fa-solid fa-moon icono-luna" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icono-sol" aria-hidden="true"></i>
+          <span class="sr-only">Cambiar modo claro/oscuro</span>
+        </label>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
@@ -88,7 +86,7 @@
 
         <div class="error-botones">
           <a href="index.html" class="boton boton-verde"><i class="fa-solid fa-house"></i> Regresar al inicio</a>
-          <button type="button" class="boton boton-borde" id="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver atrás</button>
+          <a href="productos.html" class="boton boton-borde"><i class="fa-solid fa-cart-shopping"></i> Ver productos</a>
         </div>
 
         <p class="error-enlaces">
@@ -156,18 +154,9 @@
       </div>
     </div>
   </footer>
-   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
-  <script src="js/modo-oscuro.js"></script>
-  <!-- TURNO 11: "Volver atrás" regresa a la página anterior; si no hay historial, va al inicio -->
-  <script>
-    document.getElementById('btn-volver').addEventListener('click', function () {
-      if (history.length > 1) {
-        history.back();
-      } else {
-        location.href = 'index.html';
-      }
-    });
-  </script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/principal.js"></script>
+<script src="js/interaccion.js"></script>
 </body>
 
 </html>

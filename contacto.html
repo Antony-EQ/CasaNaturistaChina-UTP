@@ -11,6 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/Impresion.css" media="print">
+  <link rel="stylesheet" href="css/formulario.css">
+  <link rel="stylesheet" href="css/interaccion.css">
+  <!-- Modo oscuro persistente: va en el <head> para aplicarse antes de pintar -->
+  <script src="js/tema.js"></script>
 </head>
 
 <body>
@@ -27,11 +32,10 @@
           <span>Casa Naturista<br>China</span>
         </a>
 
-        <!-- Menú hamburguesa (solo se ve en celular). Casilla oculta + etiqueta ☰:
-             al tocar la etiqueta se marca la casilla y el CSS despliega el menú -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="boton-hamburguesa" aria-label="Abrir o cerrar el menú">☰</label>
-        <nav>
+        <!-- Menú hamburguesa (solo se ve en celular): js/interaccion.js usa classList.toggle()
+             para abrir y cerrar el MISMO menú <nav> de abajo (no hay un segundo menú) -->
+        <button type="button" class="boton-hamburguesa" id="boton-menu" aria-label="Abrir o cerrar el menú" aria-expanded="false" aria-controls="menu-principal">&#9776;</button>
+        <nav id="menu-principal">
           <ul class="menu">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
             <li><a href="productos.html"><i class="fa-solid fa-cart-shopping"></i> Productos</a></li>
@@ -40,10 +44,13 @@
             <li><a href="contacto.html" class="activo"><i class="fa-solid fa-phone"></i> Contacto</a></li>
           </ul>
         </nav>
-        <!-- Botón de modo oscuro -->
-        <button id="btn-theme-toggle" class="boton-theme" aria-label="Cambiar modo oscuro/claro" style="background: transparent; border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro); padding: 0.5rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 1rem;">
-          <i class="fa-solid fa-moon"></i>
-        </button>
+        <!-- Modo oscuro: checkbox + CSS; js/tema.js guarda la elección y la mantiene en todas las páginas. -->
+        <input type="checkbox" id="theme-toggle" class="theme-toggle" aria-label="Activar modo oscuro">
+        <label for="theme-toggle" class="boton-theme" title="Cambiar modo claro/oscuro">
+          <i class="fa-solid fa-moon icono-luna" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icono-sol" aria-hidden="true"></i>
+          <span class="sr-only">Cambiar modo claro/oscuro</span>
+        </label>
         <a href="https://wa.me/51919589549" class="boton-whatsapp" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp 919 589 549
         </a>
@@ -65,7 +72,7 @@
              Los tipos (text, email, tel, select, textarea) hacen que el navegador
              valide solo. "required" obliga a llenar el campo.
              action="#" porque todavía no hay servidor: se conectará en una unidad posterior. -->
-        <form class="formulario" action="#" method="post">
+        <form id="form-contacto" class="formulario" action="mailto:farmaciachinatacna@gmail.com" method="post" enctype="text/plain">
 
           <span class="etiqueta-seccion">Asesoría gratuita</span>
           <h2>Cuéntanos tu caso</h2>
@@ -74,17 +81,21 @@
           <div class="fila-campos">
             <div class="campo">
               <label for="nombre">Nombre y apellido</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Quispe" required>
+              <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Quispe" minlength="3" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü .'\-]{3,}" required>
+               <p class="mensaje-campo" id="msg-nombre" role="alert"></p>
+                   <p id="saludo-personalizado" aria-live="polite"></p>
             </div>
             <div class="campo">
               <label for="telefono">WhatsApp</label>
-              <input type="tel" id="telefono" name="telefono" placeholder="9xx xxx xxx" required>
+              <input type="tel" id="telefono" name="telefono" placeholder="9XXXXXXXX" inputmode="numeric" pattern="9[0-9]{8}" maxlength="9" title="Ingresa 9 dígitos y empieza con 9" required>
+              <p class="mensaje-campo" id="msg-telefono"></p>
             </div>
           </div>
 
           <div class="campo">
-            <label for="correo">Correo electrónico</label>
+            <label for="correo">Correo electrónico <span class="opcional">(opcional)</span> </label>
             <input type="email" id="correo" name="correo" placeholder="tu@correo.com">
+            <p class="mensaje-campo" id="msg-correo"></p>
           </div>
 
           <div class="fila-campos">
@@ -99,7 +110,10 @@
             </div>
             <div class="campo">
               <label for="necesidad">¿Qué quieres mejorar?</label>
-              <select id="necesidad" name="necesidad" required>
+             <select id="necesidad" name="necesidad" required>
+
+
+
                 <option value="">Elige una opción</option>
                 <option value="digestion">Digestión y desintoxicación</option>
                 <option value="energia">Energía y vitalidad</option>
@@ -166,18 +180,24 @@
 
           <div class="campo">
             <label for="mensaje">Cuéntanos tu caso</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Desde cuándo lo sientes, qué tomas hoy, si tienes algún tratamiento médico..." required></textarea>
+            <textarea id="mensaje" name="mensaje" minlength="10" maxlength="500" placeholder="Desde cuándo lo sientes, qué tomas hoy, si tienes algún tratamiento médico..." required></textarea>
+         <!-- Contador de caracteres: lo actualiza js/principal.js mientras se escribe -->
+         <p class="contador" id="contador-mensaje">0 / 500 caracteres</p>
+         <p class="mensaje-campo" id="msg-mensaje"  role="alert"></p>
+
           </div>
 
           <div class="campo campo-casilla">
             <input type="checkbox" id="autorizo" name="autorizo" required>
             <label for="autorizo">Acepto que me contacten por WhatsApp para recibir la recomendación y que mis datos se usen solo para atender esta consulta.</label>
+          
+          
           </div>
+      <button type="submit" id="boton-enviar" class="boton-enviar"><span class="boton-contenido boton-normal"><i class="fa-solid fa-paper-plane"></i> Enviar por correo</span></button>
 
-          <button type="submit">Enviar mi consulta</button>
-
+        <p class="nota-sin-js">El formulario usa la validación nativa del navegador y abrirá tu aplicación de correo. Si prefieres WhatsApp, usa el botón directo.</p>
+          <a class="boton boton-verde boton-whatsapp-form" href="https://wa.me/51919589549" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
         </form>
-
 
         <!-- Columna derecha: datos de contacto directo -->
         <aside class="datos-contacto">
@@ -270,8 +290,7 @@
 
 
     <!-- ---------- Mapa ----------
-         Mapa de Google Maps incrustado con <iframe>. REEMPLAZAR por el mapa real:
-         en Google Maps > Compartir > Insertar un mapa > copiar el código. -->
+         Mapa de Google Maps incrustado con <iframe>.  -->
 <section class="seccion" id="mapa">
   <div class="contenedor">
     <h2>Cómo llegar a Farmacia China</h2>
@@ -348,8 +367,9 @@
       </div>
     </div>
   </footer>
-   <!-- scrip sirve para conservar cambios en el modo oscuro  -->
-  <script src="js/modo-oscuro.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/principal.js"></script>
+<script src="js/interaccion.js"></script>
 </body>
 
 </html>

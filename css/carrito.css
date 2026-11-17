@@ -1,0 +1,121 @@
+/* ==========================================================
+   TURNO 13 — Carrito de consulta (modal "Mi lista de productos")
+   Reutiliza .modal y .modal-caja de modal.css y las variables
+   de color de estilos.css (también funcionan en modo oscuro).
+   ========================================================== */
+
+/* Botón flotante con contador */
+.carrito-flotante {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 1500;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 1.2rem; border: 0; border-radius: 999px;
+  background: var(--naranja, #f28c28); color: #fff;
+  font: 600 1rem var(--fuente, sans-serif); cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+  transition: transform .2s ease;
+}
+.carrito-flotante:hover { transform: scale(1.06); }
+.carrito-flotante:focus-visible { outline: 3px solid var(--verde-oscuro, #1e5a2c); outline-offset: 3px; }
+.carrito-contador {
+  min-width: 1.5rem; height: 1.5rem; padding: 0 .4rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; background: var(--verde-oscuro, #1e5a2c); color: #fff;
+  font-size: .85rem; font-weight: 700;
+}
+.carrito-contador[hidden] { display: none; }
+
+/* El modal del carrito es una sola columna */
+.carrito-caja { display: block; max-width: 640px; }
+.carrito-caja h2 { margin: 0 2.5rem 1rem 0; color: var(--verde-oscuro, #1e5a2c); font-size: 1.5rem; }
+.carrito-vacio { margin: 1rem 0; padding: 1.5rem; text-align: center; border-radius: 10px; background: var(--verde-claro, #e4efd6); }
+.carrito-vacio[hidden], .carrito-resumen[hidden] { display: none; }
+
+/* Filas de productos */
+.carrito-items { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.carrito-item {
+  display: grid; grid-template-columns: 1fr auto auto; gap: .5rem 1rem; align-items: center;
+  padding: .8rem 1rem; border: 1px solid var(--gris-borde, #d9d9d9); border-radius: 10px;
+}
+.carrito-info { display: flex; flex-direction: column; min-width: 0; }
+.carrito-info strong { color: var(--verde-oscuro, #1e5a2c); overflow-wrap: anywhere; }
+.carrito-info span { font-size: .9rem; }
+.carrito-subtotal { font-weight: 700; color: var(--verde-oscuro, #1e5a2c); white-space: nowrap; }
+
+/* Controles + / − / eliminar */
+.carrito-controles { display: inline-flex; align-items: center; gap: .5rem; }
+.carrito-cantidad { min-width: 1.8rem; text-align: center; font-weight: 700; }
+.carrito-btn {
+  width: 2.2rem; height: 2.2rem; border: 2px solid var(--verde-oscuro, #1e5a2c); border-radius: 50%;
+  background: transparent; color: var(--verde-oscuro, #1e5a2c);
+  font: 700 1.2rem/1 var(--fuente, sans-serif); cursor: pointer;
+}
+.carrito-btn:hover { background: var(--verde-oscuro, #1e5a2c); color: #fff; }
+.carrito-eliminar {
+  grid-column: 1 / -1; justify-self: end;
+  padding: .3rem .8rem; border: 1px solid #c62828; border-radius: 8px;
+  background: transparent; color: #c62828; font: 600 .85rem var(--fuente, sans-serif); cursor: pointer;
+}
+.carrito-eliminar:hover { background: #c62828; color: #fff; }
+.carrito-btn:focus-visible, .carrito-eliminar:focus-visible,
+.carrito-vaciar:focus-visible, .carrito-whatsapp:focus-visible { outline: 3px solid var(--naranja, #f28c28); outline-offset: 2px; }
+
+/* Resumen, total y botones finales */
+.carrito-resumen { margin-top: 1.25rem; padding-top: 1rem; border-top: 2px solid var(--gris-borde, #d9d9d9); }
+.carrito-total-fila { margin: 0 0 1rem; font-size: 1.2rem; text-align: right; }
+.carrito-total-fila strong { color: var(--verde-oscuro, #1e5a2c); font-size: 1.5rem; }
+.carrito-acciones { display: flex; flex-wrap: wrap; gap: .75rem; }
+.carrito-whatsapp { flex: 1 1 260px; text-align: center; }
+.carrito-vaciar { flex: 0 1 auto; cursor: pointer; text-align: center; font-family: inherit; font-size: 1rem; }
+
+/* Celular: el modal sube desde abajo (igual que el de detalles) */
+@media (max-width: 700px) {
+  .carrito-flotante-texto { display: none; }          /* solo ícono + contador */
+  .carrito-flotante { padding: .9rem; }
+  .carrito-item { grid-template-columns: 1fr auto; }
+  .carrito-subtotal { grid-column: 1; }
+  .carrito-controles { grid-column: 2; grid-row: 1; }
+  .carrito-total-fila { text-align: left; }
+  .carrito-acciones .boton { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .carrito-flotante { transition: none; } }
+@media print { .carrito-flotante { display: none !important; } }
+
+/* Botón + cuando ya se pidió todo el stock */
+.carrito-btn:disabled,
+.carrito-btn:disabled:hover {
+  opacity: .4;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--verde-oscuro, #1e5a2c);
+}
+/* Aviso "Máximo disponible: 5" debajo del nombre */
+.carrito-info .carrito-maximo { font-size: .8rem; color: #9a5700; font-weight: 600; }
+
+/* ----------------------------------------------------------
+   Título, ✕ y total SIEMPRE visibles. Solo se desplaza la lista.
+   - El modal es una columna (flex) de alto máximo fijo y NO se
+     desplaza (overflow: hidden).
+   - La lista #carrito-items ocupa el espacio que sobra
+     (flex: 1) y es lo único con scroll (overflow-y: auto).
+   - min-height: 0 es necesario para que la lista pueda
+     achicarse y no empuje el resumen fuera del modal.
+   ---------------------------------------------------------- */
+.carrito-caja {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.carrito-caja h2,
+.carrito-vacio,
+.carrito-resumen {
+  flex-shrink: 0;            /* estos no se aplastan */
+}
+
+.carrito-items {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;      /* al llegar al final no mueve la página de atrás */
+  padding: .25rem .4rem .25rem 0;    /* aire para la barra de scroll */
+}
